@@ -1,0 +1,83 @@
+{
+  "eshop": {
+    "business_exception": {
+      "http_error_400": "خطا سمت کاربر",
+      "http_error_500": "خطا سمت سرور",
+      "page_not_found": "صفحه پیدا نشد"
+    },
+    "shared": {
+      "edit": "ویرایش",
+      "warning": "هشدار",
+      "yes": "بله",
+      "no": "خیر",
+      "return": "بازگشت",
+      "delete": "حذف",
+      "are_you_sure": "آیا مطمئن هستید؟",
+      "cancel": "لغو",
+      "save": "ذخیره",
+      "confirm": "تایید",
+      "understand": "متوجه شدم",
+      "retry": "تلاش مجدد",
+      "search": "جستجو ...",
+      "done": "انجام شد",
+      "no_result": "موردی یافت نشد",
+      "error": "خطا",
+      "woman": "زن",
+      "man": "مرد",
+      "delete_filters": "حذف فیلتر ها",
+      "from": "از",
+      "until": "تا",
+      "exit": "خروج",
+      "online_shop": "فروشگاه آنلاین",
+      "app_version": "نسخه 1.0.0",
+      "username": "نام کاربری",
+      "password": "رمز عبور",
+      "register": "ثبت نام",
+      "select_picture": "انتخاب تصویر",
+      "name": "نام",
+      "family": "نام خانوادگی",
+      "password_repetition": "تکرار پسورد",
+      "address": "آدرس",
+      "toman": "تومان",
+      "details": "توضیحات",
+      "tag": "تگ",
+      "instock": "موجودی",
+      "active": "فعال",
+      "deactive": "غیر فعال",
+      "favorit": "علاقه مندی",
+      "price_renge": ": محدوده قیمت",
+      "only_available_product": ": فقط کالاهای موجود",
+      "product_name": "نام کالا",
+      "product_price": "قیمت کالا",
+      "product_status": ": وضعیت کالا"
+    },
+    "login_page": {
+      "singup_later": "--- قبلا ثبت نام کرده اید ---",
+      "new_register": "--- کاربر جدید هستید ---",
+      "login": "ورود"
+    },
+    "add_product_page": {
+      "add_product": "افزودن کالا"
+    },
+    "product_list_admin_page": {
+      "shop_admin": "مدیریت فروشگاه"
+    },
+    "product_list_user_page": {
+      "product_list": "لیست محصولات"
+    },
+    "edit_product_page": {
+      "edit_product": "ویرایش کالا"
+    },
+    "product_details_page": {
+      "id": "شناسه"
+    },
+    "cart_page": {
+      "cart": "سبد خرید",
+      "unit_price": "قیمت واحد",
+      "total_price": "قیمت مجموع",
+      "number": "تعداد",
+      "number_product_per": "عدد کالا با",
+      "submit_order": "ثبت سفارش"
+    }
+  }
+}

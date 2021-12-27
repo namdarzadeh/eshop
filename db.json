@@ -1,0 +1,26 @@
+{
+  "person": [
+    {
+      "isadmin": 1,
+      "username": "admin",
+      "password": "123456",
+      "name": "مدیریت",
+      "family": "فروشگاه",
+      "address": "شیراز",
+      "favorite": "",
+      "id": 1
+    }
+  ],
+  "product": [
+    {
+      "isactive": "قراردادی",
+      "name": "قراردادی",
+      "price": "قراردادی",
+      "instock": "قراردادی",
+      "pic": "#ffebee",
+      "details": "#ffebee",
+      "tag": "#ffebee",
+      "id": 1
+    }
+  ]
+}

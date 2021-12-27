@@ -1,0 +1,83 @@
+{
+  "eshop": {
+    "business_exception": {
+      "http_error_400": "Client errors",
+      "http_error_500": "Server errors",
+      "page_not_found": "Page Not Found"
+    },
+    "shared": {
+      "edit": "edit",
+      "warning": "warning",
+      "yes": "yes",
+      "no": "no",
+      "return": "return",
+      "delete": "delete",
+      "are_you_sure": "are you sure",
+      "cancel": "cancel",
+      "save": "save",
+      "confirm": "confirm",
+      "understand": "understand",
+      "retry": "retry",
+      "search": "search ...",
+      "done": "done",
+      "no_result": "no result",
+      "error": "error",
+      "woman": "woman",
+      "man": "man",
+      "delete_filters": "delete filters",
+      "from": "from",
+      "until": "until",
+      "exit": "exit",
+      "online_shop": "online shop",
+      "app_version": "verion 1.0.0",
+      "username": "username",
+      "password": "password",
+      "register": "register",
+      "select_picture": "select picture",
+      "name": "name",
+      "family": "family",
+      "password_repetition": "password repetition",
+      "address": "address",
+      "toman": "toman",
+      "details": "details",
+      "tag": "tag",
+      "instock": "instock",
+      "active": "active",
+      "deactive": "deactive",
+      "favorit": "favorit",
+      "price_renge": "price renge :",
+      "only_available_product": "only available product :",
+      "product_name": "product name",
+      "product_price": "product price",
+      "product_status": "product status :"
+    },
+    "login_page": {
+      "singup_later": "--- You have already registered ---",
+      "new_register": "--- You are a new user ---",
+      "login": "login"
+    },
+    "add_product_page": {
+      "add_product": "add product"
+    },
+    "product_list_admin_page": {
+      "shop_admin": "shop admin"
+    },
+    "product_list_user_page": {
+      "product_list": "products list"
+    },
+    "edit_product_page": {
+      "edit_product": "edit product"
+    },
+    "product_details_page": {
+      "id": "id"
+    },
+    "cart_page": {
+      "cart": "cart",
+      "unit_price": "unit price",
+      "total_price": "total price",
+      "number": "number",
+      "number_product_per": "number product per",
+      "submit_order": "submit order"
+    }
+  }
+}

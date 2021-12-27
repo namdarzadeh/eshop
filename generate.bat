@@ -1,0 +1,1 @@
+get generate locales lib/assets/i18n

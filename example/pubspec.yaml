@@ -1,0 +1,63 @@
+name: example
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+  flutter: ">=2.8.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  get: ^4.6.1
+
+  eshop:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.4
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: IRANSans
+      fonts:
+        - asset: assets/fonts/iran_sans/IRANSansMobile_Black.ttf
+          style: normal
+          weight: 900
+
+    - family: IRANSans
+      fonts:
+        - asset: assets/fonts/iran_sans/IRANSansMobile_Bold.ttf
+          style: normal
+          weight: 700
+
+    - family: IRANSans
+      fonts:
+        - asset: assets/fonts/iran_sans/IRANSansMobile_Medium.ttf
+          style: normal
+          weight: 500
+
+    - family: IRANSans
+      fonts:
+        - asset: assets/fonts/iran_sans/IRANSansMobile_Light.ttf
+          style: normal
+          weight: 300
+
+    - family: IRANSans
+      fonts:
+        - asset: assets/fonts/iran_sans/IRANSansMobile_UltraLight.ttf
+          style: normal
+          weight: 200
+
+    - family: IRANSans
+      fonts:
+        - asset: assets/fonts/iran_sans/IRANSansMobile.ttf
+          style: normal
