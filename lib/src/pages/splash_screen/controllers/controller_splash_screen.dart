@@ -15,8 +15,6 @@ class ControllerSplashScreen extends GetxController {
 
   Future<void> firstUse() async {
     final int? result = await _repository.setupAdmin();
-    await Future.delayed(const Duration(milliseconds: 2000));
-    Get.toNamed('');
   }
 
   @override
@@ -25,6 +23,8 @@ class ControllerSplashScreen extends GetxController {
     if (person.isEmpty) {
       await firstUse();
     }
+    await Future.delayed(const Duration(milliseconds: 3000));
+    await Get.offNamed(EShopRouteNames.login);
     super.onInit();
   }
 }

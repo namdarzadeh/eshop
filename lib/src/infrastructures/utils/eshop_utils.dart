@@ -1,6 +1,12 @@
 class EShopUtils {
   bool forDisableWarning() => true;
 
+  static double allPagePadding() => 20;
+
+  static double allWidgetPadding() => 15;
+
+  static double lableWidgetPadding() => 15;
+
   static double splashScreenPadding() => 50;
 
   static double largePadding() => 10;
