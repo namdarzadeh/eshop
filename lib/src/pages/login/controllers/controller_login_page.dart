@@ -21,7 +21,7 @@ class ControllerLoginPage extends GetxController {
     }
   }
 
-  Future<int> checkUser() async {
+  int checkUser() {
     int _result = 0;
     person.forEach((final element) {
       if (element.username == controllerUsername.text &&
@@ -34,24 +34,35 @@ class ControllerLoginPage extends GetxController {
   }
 
   Future<void> loginClick() async {
-    final int _result = await _getPerson();
-    if (_result == 0) {
-      ScaffoldMessenger.of(Get.context!).showSnackBar(const SnackBar(
-          content: Text(LocaleKeys.eshop_shared_error,
-              textDirection: TextDirection.rtl)));
+    if (controllerUsername.text.trim().isEmpty ||
+        controllerPassword.text.trim().isEmpty) {
+      ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
+          content:
+              Text(LocaleKeys.eshop_business_exception_fill_all_field.tr)));
     } else {
-      final int _checkUserResult = await checkUser();
-      if (_checkUserResult == 0) {
-        ScaffoldMessenger.of(Get.context!).showSnackBar(const SnackBar(
-            content: Text(LocaleKeys.eshop_shared_error,
-                textDirection: TextDirection.rtl)));
+      final int _result = await _getPerson();
+      if (_result == 0) {
+        ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
+            content:
+                Text(LocaleKeys.eshop_business_exception_http_error_500.tr)));
       } else {
-        // into product page
+        final int _checkUserResult = await checkUser();
+        if (_checkUserResult == 0) {
+          ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
+              content: Text(LocaleKeys
+                  .eshop_business_exception_infomation_incorrect.tr)));
+        } else {
+          if (personViewModel.isadmin == 1) {
+            // into product list admin
+          } else {
+            // into product list user
+          }
+        }
       }
     }
   }
 
   void registerClick() {
-    // into register page
+    Get.offNamed(EShopRouteNames.register);
   }
 }

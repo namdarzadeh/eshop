@@ -3,7 +3,13 @@
     "business_exception": {
       "http_error_400": "خطا سمت کاربر",
       "http_error_500": "خطا سمت سرور",
-      "page_not_found": "صفحه پیدا نشد"
+      "page_not_found": "صفحه پیدا نشد",
+      "fill_all_field": "لطفا تمام فیلدها را پر کنید",
+      "infomation_incorrect": "نام کاربری و رمز عبور وارد شده صحیح نیست",
+      "repetitious_username": "این نام کاربری قبلا ساخته شده است",
+      "register_error": "ثبت کاربر با خطا مواجه شد مجدد تلاش کنید",
+      "register_successful": "ثبت نام با موفقیت انجام شد",
+      "password_verify": "پسورد ها باید یکسان باشند"
     },
     "shared": {
       "edit": "ویرایش",

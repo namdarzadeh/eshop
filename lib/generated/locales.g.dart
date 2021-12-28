@@ -17,6 +17,18 @@ class LocaleKeys {
       'eshop_business_exception_http_error_500';
   static const eshop_business_exception_page_not_found =
       'eshop_business_exception_page_not_found';
+  static const eshop_business_exception_fill_all_field =
+      'eshop_business_exception_fill_all_field';
+  static const eshop_business_exception_infomation_incorrect =
+      'eshop_business_exception_infomation_incorrect';
+  static const eshop_business_exception_repetitious_username =
+      'eshop_business_exception_repetitious_username';
+  static const eshop_business_exception_register_error =
+      'eshop_business_exception_register_error';
+  static const eshop_business_exception_register_successful =
+      'eshop_business_exception_register_successful';
+  static const eshop_business_exception_password_verify =
+      'eshop_business_exception_password_verify';
   static const eshop_shared_edit = 'eshop_shared_edit';
   static const eshop_shared_warning = 'eshop_shared_warning';
   static const eshop_shared_yes = 'eshop_shared_yes';
@@ -89,6 +101,13 @@ class Locales {
     'eshop_business_exception_http_error_400': 'Client errors',
     'eshop_business_exception_http_error_500': 'Server errors',
     'eshop_business_exception_page_not_found': 'Page Not Found',
+    'eshop_business_exception_fill_all_field': 'please fill all field',
+    'eshop_business_exception_infomation_incorrect':
+        'The username and password entered are incorrect',
+    'eshop_business_exception_repetitious_username': 'repetitious username',
+    'eshop_business_exception_register_error': 'register error',
+    'eshop_business_exception_register_successful': 'register successful',
+    'eshop_business_exception_password_verify': 'please verify password',
     'eshop_shared_edit': 'edit',
     'eshop_shared_warning': 'warning',
     'eshop_shared_yes': 'yes',
@@ -152,6 +171,16 @@ class Locales {
     'eshop_business_exception_http_error_400': 'خطا سمت کاربر',
     'eshop_business_exception_http_error_500': 'خطا سمت سرور',
     'eshop_business_exception_page_not_found': 'صفحه پیدا نشد',
+    'eshop_business_exception_fill_all_field': 'لطفا تمام فیلدها را پر کنید',
+    'eshop_business_exception_infomation_incorrect':
+        'نام کاربری و رمز عبور وارد شده صحیح نیست',
+    'eshop_business_exception_repetitious_username':
+        'این نام کاربری قبلا ساخته شده است',
+    'eshop_business_exception_register_error':
+        'ثبت کاربر با خطا مواجه شد مجدد تلاش کنید',
+    'eshop_business_exception_register_successful':
+        'ثبت نام با موفقیت انجام شد',
+    'eshop_business_exception_password_verify': 'پسورد ها باید یکسان باشند',
     'eshop_shared_edit': 'ویرایش',
     'eshop_shared_warning': 'هشدار',
     'eshop_shared_yes': 'بله',

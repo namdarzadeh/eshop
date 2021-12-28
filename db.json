@@ -9,6 +9,36 @@
       "address": "شیراز",
       "favorite": "",
       "id": 1
+    },
+    {
+      "isadmin": 0,
+      "username": "oiygyg",
+      "password": "ipug",
+      "name": "jyhg",
+      "family": "oigt",
+      "address": "oiuyg",
+      "favorite": "",
+      "id": 2
+    },
+    {
+      "isadmin": 0,
+      "username": "alireza",
+      "password": "12345",
+      "name": "uyfljy",
+      "family": "jkfluful",
+      "address": "oygio",
+      "favorite": "",
+      "id": 3
+    },
+    {
+      "isadmin": 0,
+      "username": "trtr",
+      "password": "erg",
+      "name": "rggrg",
+      "family": "gregerg",
+      "address": "trhhr",
+      "favorite": "",
+      "id": 4
     }
   ],
   "product": [

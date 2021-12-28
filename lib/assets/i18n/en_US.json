@@ -3,7 +3,13 @@
     "business_exception": {
       "http_error_400": "Client errors",
       "http_error_500": "Server errors",
-      "page_not_found": "Page Not Found"
+      "page_not_found": "Page Not Found",
+      "fill_all_field": "please fill all field",
+      "infomation_incorrect": "The username and password entered are incorrect",
+      "repetitious_username": "repetitious username",
+      "register_error": "register error",
+      "register_successful": "register successful",
+      "password_verify": "please verify password"
     },
     "shared": {
       "edit": "edit",

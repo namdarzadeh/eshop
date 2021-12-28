@@ -38,7 +38,9 @@ class LoginPage extends GetView<ControllerLoginPage> {
                   widget: Text(LocaleKeys.eshop_login_page_new_register.tr)),
               CustomPaddingWidget(
                   widget: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.registerClick();
+                      },
                       child: Text(LocaleKeys.eshop_shared_register.tr))),
             ],
           )),
