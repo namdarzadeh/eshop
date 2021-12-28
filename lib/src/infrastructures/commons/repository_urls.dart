@@ -19,4 +19,17 @@ class RepositoryUrls {
     final Response response = await dio.post(url, data: map);
     return response.data;
   }
+
+  static Future<dynamic> dioPut(
+      final String url, final int id, final Map<String, dynamic> map) async {
+    final Dio dio = Dio();
+    final Response response = await dio.put('$url/$id', data: map);
+    return response.data;
+  }
+
+  static Future<dynamic> dioDelete(final String url, final int id) async {
+    final Dio dio = Dio();
+    final Response response = await dio.delete('$url/$id');
+    return response.data;
+  }
 }

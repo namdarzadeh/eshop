@@ -43,13 +43,13 @@
   ],
   "product": [
     {
-      "isactive": "قراردادی",
-      "name": "قراردادی",
-      "price": "قراردادی",
-      "instock": "قراردادی",
-      "pic": "#ffebee",
-      "details": "#ffebee",
-      "tag": "#ffebee",
+      "isactive": 1,
+      "name": "کفش کد 1",
+      "price": 2000,
+      "instock": 2,
+      "pic": "picture",
+      "details": "رنگ خاکستری سایز 40",
+      "tag": "کفش",
       "id": 1
     }
   ]

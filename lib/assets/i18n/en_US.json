@@ -9,7 +9,8 @@
       "repetitious_username": "repetitious username",
       "register_error": "register error",
       "register_successful": "register successful",
-      "password_verify": "please verify password"
+      "password_verify": "please verify password",
+      "delete_product_successful": "Delete product successful"
     },
     "shared": {
       "edit": "edit",

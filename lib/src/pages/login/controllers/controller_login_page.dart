@@ -52,8 +52,9 @@ class ControllerLoginPage extends GetxController {
               content: Text(LocaleKeys
                   .eshop_business_exception_infomation_incorrect.tr)));
         } else {
+          EShopParameters.localPersonViewModel = personViewModel;
           if (personViewModel.isadmin == 1) {
-            // into product list admin
+            await Get.offNamed(EShopRouteNames.productListAdmin);
           } else {
             // into product list user
           }

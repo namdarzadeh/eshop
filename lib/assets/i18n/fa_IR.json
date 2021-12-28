@@ -9,7 +9,8 @@
       "repetitious_username": "این نام کاربری قبلا ساخته شده است",
       "register_error": "ثبت کاربر با خطا مواجه شد مجدد تلاش کنید",
       "register_successful": "ثبت نام با موفقیت انجام شد",
-      "password_verify": "پسورد ها باید یکسان باشند"
+      "password_verify": "پسورد ها باید یکسان باشند",
+      "delete_product_successful": "حذف کالا با موفقیت انجام شد"
     },
     "shared": {
       "edit": "ویرایش",

@@ -29,6 +29,8 @@ class LocaleKeys {
       'eshop_business_exception_register_successful';
   static const eshop_business_exception_password_verify =
       'eshop_business_exception_password_verify';
+  static const eshop_business_exception_delete_product_successful =
+      'eshop_business_exception_delete_product_successful';
   static const eshop_shared_edit = 'eshop_shared_edit';
   static const eshop_shared_warning = 'eshop_shared_warning';
   static const eshop_shared_yes = 'eshop_shared_yes';
@@ -108,6 +110,8 @@ class Locales {
     'eshop_business_exception_register_error': 'register error',
     'eshop_business_exception_register_successful': 'register successful',
     'eshop_business_exception_password_verify': 'please verify password',
+    'eshop_business_exception_delete_product_successful':
+        'Delete product successful',
     'eshop_shared_edit': 'edit',
     'eshop_shared_warning': 'warning',
     'eshop_shared_yes': 'yes',
@@ -181,6 +185,8 @@ class Locales {
     'eshop_business_exception_register_successful':
         'ثبت نام با موفقیت انجام شد',
     'eshop_business_exception_password_verify': 'پسورد ها باید یکسان باشند',
+    'eshop_business_exception_delete_product_successful':
+        'حذف کالا با موفقیت انجام شد',
     'eshop_shared_edit': 'ویرایش',
     'eshop_shared_warning': 'هشدار',
     'eshop_shared_yes': 'بله',
