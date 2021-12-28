@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 
 import '../../../../eshop.dart';
 import '../../shared/models/person_view_model.dart';
-import '../repositories/repositories_login_page.dart';
+import '../repositories/repositories_login.dart';
 
-class ControllerLoginPage extends GetxController {
+class ControllerLogin extends GetxController {
   final TextEditingController controllerUsername = TextEditingController();
   final TextEditingController controllerPassword = TextEditingController();
-  final RepositoriesLoginPage _repository = RepositoriesLoginPage();
+  final RepositoriesLogin _repository = RepositoriesLogin();
   List<PersonViewModel> person = <PersonViewModel>[];
   late PersonViewModel personViewModel;
 
@@ -56,7 +56,7 @@ class ControllerLoginPage extends GetxController {
           if (personViewModel.isadmin == 1) {
             await Get.offNamed(EShopRouteNames.productListAdmin);
           } else {
-            // into product list user
+            await Get.offNamed(EShopRouteNames.productListUser);
           }
         }
       }

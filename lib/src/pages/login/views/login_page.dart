@@ -6,9 +6,9 @@ import '../../../infrastructures/utils/eshop_utils.dart';
 import '../../shared/views/custom_drawer_widget.dart';
 import '../../shared/views/custom_lable_widget.dart';
 import '../../shared/views/custom_padding_widget.dart';
-import '../controllers/controller_login_page.dart';
+import '../controllers/controller_login.dart';
 
-class LoginPage extends GetView<ControllerLoginPage> {
+class LoginPage extends GetView<ControllerLogin> {
   const LoginPage({final Key? key}) : super(key: key);
 
   @override

@@ -1,6 +1,14 @@
 class EShopUtils {
   bool forDisableWarning() => true;
 
+  static double largeTextSize() => 20;
+  static double mediumTextSize() => 15;
+  static double smallTextSize() => 10;
+
+  static double largelistPadding() => 15;
+  static double mediumlistPadding() => 10;
+  static double smalllistPadding() => 5;
+
   static double allPagePadding() => 20;
 
   static double allWidgetPadding() => 15;

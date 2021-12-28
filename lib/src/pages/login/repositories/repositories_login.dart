@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:eshop/src/infrastructures/commons/repository_urls.dart';
 import 'package:eshop/src/pages/shared/models/person_view_model.dart';
 
-class RepositoriesLoginPage {
+class RepositoriesLogin {
   Future<List<PersonViewModel>> getPerson() async {
     List<PersonViewModel> person = <PersonViewModel>[];
     try {

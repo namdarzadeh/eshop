@@ -4,7 +4,7 @@ import '../../../infrastructures/commons/repository_urls.dart';
 import '../../shared/models/person_dto.dart';
 import '../../shared/models/person_view_model.dart';
 
-class RepositoriesRegisterPage {
+class RepositoriesRegister {
   Future<List<PersonViewModel>> getPerson() async {
     List<PersonViewModel> person = <PersonViewModel>[];
     try {

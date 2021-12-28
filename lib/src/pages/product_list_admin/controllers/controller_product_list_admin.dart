@@ -7,11 +7,10 @@ import 'package:get/get.dart';
 import '../../shared/models/product_view_model.dart';
 import '../repositories/repositories_product_list_admin.dart';
 
-class ControllerProductListAdminPage extends GetxController {
-  final RepositoriesProductListAdminPage _repository =
-      RepositoriesProductListAdminPage();
+class ControllerProductListAdmin extends GetxController {
+  final RepositoriesProductListAdmin _repository =
+      RepositoriesProductListAdmin();
   RxList<ProductViewModel> products = <ProductViewModel>[].obs;
-  late ProductViewModel productViewModel;
 
   Future<int> _getProducts() async {
     products.value = await _repository.getProducts();

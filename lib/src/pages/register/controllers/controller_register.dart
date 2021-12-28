@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import '../../../../eshop.dart';
 import '../../shared/models/person_dto.dart';
 import '../../shared/models/person_view_model.dart';
-import '../repositories/repositories_register_page.dart';
+import '../repositories/repositories_register.dart';
 
-class ControllerRegisterPage extends GetxController {
+class ControllerRegister extends GetxController {
   final TextEditingController controllerName = TextEditingController();
   final TextEditingController controllerFamily = TextEditingController();
   final TextEditingController controllerUsername = TextEditingController();
@@ -14,7 +14,7 @@ class ControllerRegisterPage extends GetxController {
   final TextEditingController controllerPasswordVerify =
       TextEditingController();
   final TextEditingController controllerAddress = TextEditingController();
-  final RepositoriesRegisterPage _repository = RepositoriesRegisterPage();
+  final RepositoriesRegister _repository = RepositoriesRegister();
   List<PersonViewModel> person = <PersonViewModel>[];
   late PersonViewModel personViewModel;
 
