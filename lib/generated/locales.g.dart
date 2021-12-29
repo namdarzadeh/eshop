@@ -39,6 +39,10 @@ class LocaleKeys {
       'eshop_business_exception_add_product_error';
   static const eshop_business_exception_add_product_successful =
       'eshop_business_exception_add_product_successful';
+  static const eshop_business_exception_edit_product_error =
+      'eshop_business_exception_edit_product_error';
+  static const eshop_business_exception_edit_product_successful =
+      'eshop_business_exception_edit_product_successful';
   static const eshop_shared_edit = 'eshop_shared_edit';
   static const eshop_shared_warning = 'eshop_shared_warning';
   static const eshop_shared_yes = 'eshop_shared_yes';
@@ -124,6 +128,9 @@ class Locales {
     'eshop_business_exception_fill_tag_field': 'fill tag field',
     'eshop_business_exception_add_product_error': 'add product error',
     'eshop_business_exception_add_product_successful': 'add product successful',
+    'eshop_business_exception_edit_product_error': 'edit product error',
+    'eshop_business_exception_edit_product_successful':
+        'edit product successful',
     'eshop_shared_edit': 'edit',
     'eshop_shared_warning': 'warning',
     'eshop_shared_yes': 'yes',
@@ -204,6 +211,10 @@ class Locales {
     'eshop_business_exception_add_product_error': 'ثبت کالا با خطا مواجه شد',
     'eshop_business_exception_add_product_successful':
         'ثبت کالا با موفقیت انجام شد',
+    'eshop_business_exception_edit_product_error':
+        'ویرایش کالا با خطا مواجه شد',
+    'eshop_business_exception_edit_product_successful':
+        'ویرایش کالا با موفقیت انجام شد',
     'eshop_shared_edit': 'ویرایش',
     'eshop_shared_warning': 'هشدار',
     'eshop_shared_yes': 'بله',

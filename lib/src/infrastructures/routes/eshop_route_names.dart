@@ -5,4 +5,5 @@ class EShopRouteNames {
   static const String productListAdmin = '/eshop_product_list_admin';
   static const String productListUser = '/eshop_product_list_user';
   static const String addProduct = '/eshop_add_product';
+  static const String editProduct = '/eshop_edit_product';
 }

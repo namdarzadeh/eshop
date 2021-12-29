@@ -14,7 +14,9 @@
       "add_tag_error": "ثبت تگ با خطا مواجه شد",
       "fill_tag_field": "تگ مورد نظر را وارد کنید",
       "add_product_error": "ثبت کالا با خطا مواجه شد",
-      "add_product_successful": "ثبت کالا با موفقیت انجام شد"
+      "add_product_successful": "ثبت کالا با موفقیت انجام شد",
+      "edit_product_error": "ویرایش کالا با خطا مواجه شد",
+      "edit_product_successful": "ویرایش کالا با موفقیت انجام شد"
     },
     "shared": {
       "edit": "ویرایش",

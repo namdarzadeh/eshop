@@ -14,7 +14,9 @@
       "add_tag_error": "add tag error",
       "fill_tag_field": "fill tag field",
       "add_product_error": "add product error",
-      "add_product_successful": "add product successful"
+      "add_product_successful": "add product successful",
+      "edit_product_error": "edit product error",
+      "edit_product_successful": "edit product successful"
     },
     "shared": {
       "edit": "edit",

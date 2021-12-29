@@ -43,7 +43,13 @@ class ControllerProductListAdmin extends GetxController {
     }
   }
 
-  void editProductClick(final int id) {}
+  Future<void> editProductClick(final int id) async {
+    final int _result =
+        await Get.toNamed(EShopRouteNames.editProduct, arguments: id);
+    if (_result == 1) {
+      await _getProducts();
+    }
+  }
 
   Future<void> deleteProductClick(final int id) async {
     final int _result = await _repository.deleteProduct(id);

@@ -119,7 +119,9 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                       Row(
                         children: [
                           ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.editProductClick(product.id);
+                              },
                               child: Text(LocaleKeys.eshop_shared_edit.tr)),
                           ElevatedButton(
                               onPressed: () {
