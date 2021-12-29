@@ -34,5 +34,4 @@ flutter:
     - lib/assets/icons/download.jpg
     - lib/assets/icons/profile.png
     - lib/assets/icons/icfav.png
-    - lib/assets/icons/plus.png
-    - lib/assets/icons/minus.png
+    - lib/assets/icons/product.png

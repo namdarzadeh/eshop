@@ -10,7 +10,11 @@
       "register_error": "register error",
       "register_successful": "register successful",
       "password_verify": "please verify password",
-      "delete_product_successful": "Delete product successful"
+      "delete_product_successful": "Delete product successful",
+      "add_tag_error": "add tag error",
+      "fill_tag_field": "fill tag field",
+      "add_product_error": "add product error",
+      "add_product_successful": "add product successful"
     },
     "shared": {
       "edit": "edit",

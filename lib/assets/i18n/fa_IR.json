@@ -10,7 +10,11 @@
       "register_error": "ثبت کاربر با خطا مواجه شد مجدد تلاش کنید",
       "register_successful": "ثبت نام با موفقیت انجام شد",
       "password_verify": "پسورد ها باید یکسان باشند",
-      "delete_product_successful": "حذف کالا با موفقیت انجام شد"
+      "delete_product_successful": "حذف کالا با موفقیت انجام شد",
+      "add_tag_error": "ثبت تگ با خطا مواجه شد",
+      "fill_tag_field": "تگ مورد نظر را وارد کنید",
+      "add_product_error": "ثبت کالا با خطا مواجه شد",
+      "add_product_successful": "ثبت کالا با موفقیت انجام شد"
     },
     "shared": {
       "edit": "ویرایش",
@@ -56,7 +60,7 @@
       "only_available_product": ": فقط کالاهای موجود",
       "product_name": "نام کالا",
       "product_price": "قیمت کالا",
-      "product_status": ": وضعیت کالا"
+      "product_status": "وضعیت کالا :"
     },
     "login_page": {
       "singup_later": "--- قبلا ثبت نام کرده اید ---",

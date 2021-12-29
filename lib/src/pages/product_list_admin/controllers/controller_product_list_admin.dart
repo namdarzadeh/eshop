@@ -1,11 +1,11 @@
-import 'package:eshop/eshop.dart';
-import 'package:eshop/src/pages/product_list_admin/views/dialogs/delete_product_dialog.dart';
-import 'package:eshop/src/pages/shared/models/product_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../eshop.dart';
+import '../../shared/models/product_dto.dart';
 import '../../shared/models/product_view_model.dart';
 import '../repositories/repositories_product_list_admin.dart';
+import '../views/dialogs/delete_product_dialog.dart';
 
 class ControllerProductListAdmin extends GetxController {
   final RepositoriesProductListAdmin _repository =
@@ -55,6 +55,13 @@ class ControllerProductListAdmin extends GetxController {
               Text(LocaleKeys.eshop_business_exception_http_error_500.tr)));
     }
     await _getProducts();
+  }
+
+  Future<void> addProductClick() async {
+    final int _result = await Get.toNamed(EShopRouteNames.addProduct);
+    if (_result == 1) {
+      await _getProducts();
+    }
   }
 
   @override

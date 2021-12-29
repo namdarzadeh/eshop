@@ -23,6 +23,13 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                 icon: const Icon(Icons.search))
           ],
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            controller.addProductClick();
+          },
+          backgroundColor: Colors.blueAccent,
+          child: const Icon(Icons.add),
+        ),
         drawer: const CustomDrawerWidget(),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(EShopUtils.allPagePadding()),

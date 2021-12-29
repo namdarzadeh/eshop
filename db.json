@@ -41,6 +41,46 @@
       "details": "رنگ خاکستری سایز 40",
       "tag": "کفش",
       "id": 1
+    },
+    {
+      "isactive": 0,
+      "name": "iyhtfgiu",
+      "price": 64,
+      "instock": 654,
+      "pic": "pic",
+      "details": "uyf",
+      "tag": "uiyfg",
+      "id": 2
+    }
+  ],
+  "tags": [
+    {
+      "name": "کفش",
+      "id": 1
+    },
+    {
+      "name": "تیشرت",
+      "id": 2
+    },
+    {
+      "name": "kyjf",
+      "id": 3
+    },
+    {
+      "name": "yyl",
+      "id": 4
+    },
+    {
+      "name": "fsdf",
+      "id": 5
+    },
+    {
+      "name": "yuf",
+      "id": 6
+    },
+    {
+      "name": "tre",
+      "id": 7
     }
   ]
 }

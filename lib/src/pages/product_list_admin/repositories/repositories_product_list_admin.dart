@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:eshop/src/pages/shared/models/product_dto.dart';
 
 import '../../../infrastructures/commons/repository_urls.dart';
+import '../../shared/models/product_dto.dart';
 import '../../shared/models/product_view_model.dart';
 
 class RepositoriesProductListAdmin {

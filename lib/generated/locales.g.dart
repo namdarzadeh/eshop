@@ -31,6 +31,14 @@ class LocaleKeys {
       'eshop_business_exception_password_verify';
   static const eshop_business_exception_delete_product_successful =
       'eshop_business_exception_delete_product_successful';
+  static const eshop_business_exception_add_tag_error =
+      'eshop_business_exception_add_tag_error';
+  static const eshop_business_exception_fill_tag_field =
+      'eshop_business_exception_fill_tag_field';
+  static const eshop_business_exception_add_product_error =
+      'eshop_business_exception_add_product_error';
+  static const eshop_business_exception_add_product_successful =
+      'eshop_business_exception_add_product_successful';
   static const eshop_shared_edit = 'eshop_shared_edit';
   static const eshop_shared_warning = 'eshop_shared_warning';
   static const eshop_shared_yes = 'eshop_shared_yes';
@@ -112,6 +120,10 @@ class Locales {
     'eshop_business_exception_password_verify': 'please verify password',
     'eshop_business_exception_delete_product_successful':
         'Delete product successful',
+    'eshop_business_exception_add_tag_error': 'add tag error',
+    'eshop_business_exception_fill_tag_field': 'fill tag field',
+    'eshop_business_exception_add_product_error': 'add product error',
+    'eshop_business_exception_add_product_successful': 'add product successful',
     'eshop_shared_edit': 'edit',
     'eshop_shared_warning': 'warning',
     'eshop_shared_yes': 'yes',
@@ -187,6 +199,11 @@ class Locales {
     'eshop_business_exception_password_verify': 'پسورد ها باید یکسان باشند',
     'eshop_business_exception_delete_product_successful':
         'حذف کالا با موفقیت انجام شد',
+    'eshop_business_exception_add_tag_error': 'ثبت تگ با خطا مواجه شد',
+    'eshop_business_exception_fill_tag_field': 'تگ مورد نظر را وارد کنید',
+    'eshop_business_exception_add_product_error': 'ثبت کالا با خطا مواجه شد',
+    'eshop_business_exception_add_product_successful':
+        'ثبت کالا با موفقیت انجام شد',
     'eshop_shared_edit': 'ویرایش',
     'eshop_shared_warning': 'هشدار',
     'eshop_shared_yes': 'بله',
@@ -230,7 +247,7 @@ class Locales {
     'eshop_shared_only_available_product': ': فقط کالاهای موجود',
     'eshop_shared_product_name': 'نام کالا',
     'eshop_shared_product_price': 'قیمت کالا',
-    'eshop_shared_product_status': ': وضعیت کالا',
+    'eshop_shared_product_status': 'وضعیت کالا :',
     'eshop_login_page_singup_later': '--- قبلا ثبت نام کرده اید ---',
     'eshop_login_page_new_register': '--- کاربر جدید هستید ---',
     'eshop_login_page_login': 'ورود',
