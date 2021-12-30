@@ -20,7 +20,10 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
             IconButton(
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(
                     builder: (final _) => const SearchPage())),
-                icon: const Icon(Icons.search))
+                icon: const Icon(Icons.search)),
+            IconButton(
+                onPressed: () => Get.toNamed(EShopRouteNames.cart),
+                icon: const Icon(Icons.shopping_cart_rounded)),
           ],
         ),
         drawer: const CustomDrawerWidget(),
