@@ -1,5 +1,7 @@
 import 'package:eshop/src/pages/edit_product/commons/binding_edit_product.dart';
 import 'package:eshop/src/pages/edit_product/views/edit_product_page.dart';
+import 'package:eshop/src/pages/show_product/commons/binding_show_product.dart';
+import 'package:eshop/src/pages/show_product/views/show_product_page.dart';
 import 'package:get/get.dart';
 
 import '../../pages/add_product/commons/binding_add_product.dart';
@@ -51,6 +53,11 @@ class EShopRoutePages {
       name: EShopRouteNames.editProduct,
       page: () => const EditProductPage(),
       binding: BindingEditProduct(),
+    ),
+    GetPage(
+      name: EShopRouteNames.showProduct,
+      page: () => const ShowProductPage(),
+      binding: BindingShowProduct(),
     ),
   ];
 }

@@ -91,11 +91,10 @@ class AddProductPage extends GetView<ControllerAddProduct> {
                 child: Row(
                   children: [
                     Card(
-                        elevation: 10,
                         child: Padding(
-                          padding: EdgeInsets.all(EShopUtils.largePadding()),
-                          child: Obx(() => Text(controller.localTags.value)),
-                        )),
+                      padding: EdgeInsets.all(EShopUtils.largePadding()),
+                      child: Obx(() => Text(controller.localTags.value)),
+                    )),
                   ],
                 ),
               ),

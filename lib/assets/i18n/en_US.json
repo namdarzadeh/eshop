@@ -62,7 +62,9 @@
       "only_available_product": "only available product :",
       "product_name": "product name",
       "product_price": "product price",
-      "product_status": "product status :"
+      "product_status": "product status :",
+      "outofstock": "out of stock",
+      "id": "id"
     },
     "login_page": {
       "singup_later": "--- You have already registered ---",

@@ -1,3 +1,5 @@
+import 'package:eshop/src/pages/shared/views/custom_padding_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -60,8 +62,11 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
           child: Padding(
             padding: EdgeInsets.all(EShopUtils.largePadding()),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                controller.editProductClick(product.id);
+              },
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     children: [
@@ -74,27 +79,43 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                                   'lib/assets/icons/download.jpg',
                                   package: 'eshop')),
                           Column(children: [
-                            Text(product.name),
-                            Row(
-                              children: [
-                                Text(product.price.toString()),
-                                Text(LocaleKeys.eshop_shared_toman.tr)
-                              ],
+                            Padding(
+                              padding:
+                                  EdgeInsets.all(EShopUtils.smallPadding()),
+                              child: Text(product.name,
+                                  style: TextStyle(
+                                      fontSize: EShopUtils.largeTextSize())),
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsets.all(EShopUtils.smallPadding()),
+                              child: Row(
+                                children: [
+                                  Text(product.price.toString()),
+                                  Text(LocaleKeys.eshop_shared_toman.tr)
+                                ],
+                              ),
                             )
                           ])
                         ],
                       ),
-                      Row(
-                        children: [
-                          Text(LocaleKeys.eshop_shared_details.tr),
-                          Text(product.details)
-                        ],
+                      Padding(
+                        padding: EdgeInsets.all(EShopUtils.smallPadding()),
+                        child: Row(
+                          children: [
+                            Text(LocaleKeys.eshop_shared_details.tr),
+                            Text(product.details)
+                          ],
+                        ),
                       ),
-                      Row(
-                        children: [
-                          Text(LocaleKeys.eshop_shared_tag.tr),
-                          Text(product.tag)
-                        ],
+                      Padding(
+                        padding: EdgeInsets.all(EShopUtils.smallPadding()),
+                        child: Row(
+                          children: [
+                            Text(LocaleKeys.eshop_shared_tag.tr),
+                            Text(product.tag)
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -110,24 +131,56 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                           Text(LocaleKeys.eshop_shared_active.tr)
                         ],
                       ),
-                      Row(
-                        children: [
-                          Text(LocaleKeys.eshop_shared_instock.tr),
-                          Text(product.instock.toString())
-                        ],
+                      Visibility(
+                        visible: product.instock == 0 ? false : true,
+                        child: CustomPaddingWidget(
+                          widget: Row(
+                            children: [
+                              Text(LocaleKeys.eshop_shared_instock.tr),
+                              Text(product.instock.toString())
+                            ],
+                          ),
+                        ),
+                      ),
+                      Visibility(
+                        visible: product.instock != 0 ? false : true,
+                        child: CustomPaddingWidget(
+                          widget: Row(
+                            children: [
+                              Text(LocaleKeys.eshop_shared_outofstock.tr,
+                                  style: const TextStyle(color: Colors.red)),
+                            ],
+                          ),
+                        ),
                       ),
                       Row(
                         children: [
-                          ElevatedButton(
-                              onPressed: () {
-                                controller.editProductClick(product.id);
-                              },
-                              child: Text(LocaleKeys.eshop_shared_edit.tr)),
-                          ElevatedButton(
-                              onPressed: () {
-                                controller.deleteProductClick(product.id);
-                              },
-                              child: Text(LocaleKeys.eshop_shared_delete.tr)),
+                          Container(
+                            padding: EdgeInsets.all(EShopUtils.smallPadding()),
+                            width: 70,
+                            height: 35,
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  controller.editProductClick(product.id);
+                                },
+                                child: Text(LocaleKeys.eshop_shared_edit.tr,
+                                    style: TextStyle(
+                                        fontSize: EShopUtils.smallTextSize()))),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(EShopUtils.smallPadding()),
+                            width: 60,
+                            height: 35,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.red),
+                                onPressed: () {
+                                  controller.deleteProductClick(product.id);
+                                },
+                                child: Text(LocaleKeys.eshop_shared_delete.tr,
+                                    style: TextStyle(
+                                        fontSize: EShopUtils.smallTextSize()))),
+                          ),
                         ],
                       ),
                     ],

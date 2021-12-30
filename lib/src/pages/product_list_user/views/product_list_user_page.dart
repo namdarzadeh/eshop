@@ -1,11 +1,11 @@
-import 'package:eshop/src/infrastructures/utils/eshop_utils.dart';
-import 'package:eshop/src/pages/shared/models/product_view_model.dart';
-import 'package:eshop/src/pages/shared/views/custom_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:number_picker/views/number_picker_widget.dart';
 
 import '../../../../eshop.dart';
+import '../../../infrastructures/utils/eshop_utils.dart';
+import '../../shared/models/product_view_model.dart';
+import '../../shared/views/custom_drawer_widget.dart';
 import '../controllers/controller_product_list_user.dart';
 
 class ProductListUserPage extends GetView<ControllerProductListUser> {
@@ -53,8 +53,11 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
           child: Padding(
             padding: EdgeInsets.all(EShopUtils.largePadding()),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(EShopRouteNames.showProduct, arguments: product);
+              },
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     children: [
@@ -71,31 +74,41 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                           Column(children: [
                             Padding(
                               padding:
-                                  EdgeInsets.all(EShopUtils.largelistPadding()),
+                                  EdgeInsets.all(EShopUtils.smallPadding()),
                               child: Text(product.name,
                                   style: TextStyle(
                                       fontSize: EShopUtils.largeTextSize())),
                             ),
-                            Row(
-                              children: [
-                                Text(product.price.toString()),
-                                Text(LocaleKeys.eshop_shared_toman.tr)
-                              ],
+                            Padding(
+                              padding:
+                                  EdgeInsets.all(EShopUtils.smallPadding()),
+                              child: Row(
+                                children: [
+                                  Text(product.price.toString()),
+                                  Text(LocaleKeys.eshop_shared_toman.tr)
+                                ],
+                              ),
                             )
                           ])
                         ],
                       ),
-                      Row(
-                        children: [
-                          Text(LocaleKeys.eshop_shared_details.tr),
-                          Text(product.details)
-                        ],
+                      Padding(
+                        padding: EdgeInsets.all(EShopUtils.smallPadding()),
+                        child: Row(
+                          children: [
+                            Text(LocaleKeys.eshop_shared_details.tr),
+                            Text(product.details)
+                          ],
+                        ),
                       ),
-                      Row(
-                        children: [
-                          Text(LocaleKeys.eshop_shared_tag.tr),
-                          Text(product.tag)
-                        ],
+                      Padding(
+                        padding: EdgeInsets.all(EShopUtils.smallPadding()),
+                        child: Row(
+                          children: [
+                            Text(LocaleKeys.eshop_shared_tag.tr),
+                            Text(product.tag)
+                          ],
+                        ),
                       ),
                     ],
                   ),

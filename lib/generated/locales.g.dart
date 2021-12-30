@@ -89,6 +89,8 @@ class LocaleKeys {
   static const eshop_shared_product_name = 'eshop_shared_product_name';
   static const eshop_shared_product_price = 'eshop_shared_product_price';
   static const eshop_shared_product_status = 'eshop_shared_product_status';
+  static const eshop_shared_outofstock = 'eshop_shared_outofstock';
+  static const eshop_shared_id = 'eshop_shared_id';
   static const eshop_login_page_singup_later = 'eshop_login_page_singup_later';
   static const eshop_login_page_new_register = 'eshop_login_page_new_register';
   static const eshop_login_page_login = 'eshop_login_page_login';
@@ -175,6 +177,8 @@ class Locales {
     'eshop_shared_product_name': 'product name',
     'eshop_shared_product_price': 'product price',
     'eshop_shared_product_status': 'product status :',
+    'eshop_shared_outofstock': 'out of stock',
+    'eshop_shared_id': 'id',
     'eshop_login_page_singup_later': '--- You have already registered ---',
     'eshop_login_page_new_register': '--- You are a new user ---',
     'eshop_login_page_login': 'login',
@@ -259,6 +263,8 @@ class Locales {
     'eshop_shared_product_name': 'نام کالا',
     'eshop_shared_product_price': 'قیمت کالا',
     'eshop_shared_product_status': 'وضعیت کالا :',
+    'eshop_shared_outofstock': 'عدم موجودی',
+    'eshop_shared_id': 'شناسه',
     'eshop_login_page_singup_later': '--- قبلا ثبت نام کرده اید ---',
     'eshop_login_page_new_register': '--- کاربر جدید هستید ---',
     'eshop_login_page_login': 'ورود',

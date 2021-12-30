@@ -62,7 +62,9 @@
       "only_available_product": ": فقط کالاهای موجود",
       "product_name": "نام کالا",
       "product_price": "قیمت کالا",
-      "product_status": "وضعیت کالا :"
+      "product_status": "وضعیت کالا :",
+      "outofstock": "عدم موجودی",
+      "id": "شناسه"
     },
     "login_page": {
       "singup_later": "--- قبلا ثبت نام کرده اید ---",

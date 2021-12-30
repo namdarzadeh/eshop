@@ -6,4 +6,5 @@ class EShopRouteNames {
   static const String productListUser = '/eshop_product_list_user';
   static const String addProduct = '/eshop_add_product';
   static const String editProduct = '/eshop_edit_product';
+  static const String showProduct = '/eshop_show_product';
 }
