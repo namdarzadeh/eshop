@@ -2,6 +2,10 @@ import 'package:eshop/src/pages/cart/commons/binding_cart.dart';
 import 'package:eshop/src/pages/cart/views/cart_page.dart';
 import 'package:eshop/src/pages/edit_product/commons/binding_edit_product.dart';
 import 'package:eshop/src/pages/edit_product/views/edit_product_page.dart';
+import 'package:eshop/src/pages/edit_profile/commons/binding_edit_profile.dart';
+import 'package:eshop/src/pages/edit_profile/views/edit_profile_page.dart';
+import 'package:eshop/src/pages/remember_password/commons/binding_remember_password.dart';
+import 'package:eshop/src/pages/remember_password/views/remember_password_page.dart';
 import 'package:eshop/src/pages/show_product/commons/binding_show_product.dart';
 import 'package:eshop/src/pages/show_product/views/show_product_page.dart';
 import 'package:get/get.dart';
@@ -65,6 +69,16 @@ class EShopRoutePages {
       name: EShopRouteNames.cart,
       page: () => const CartPage(),
       binding: BindingCart(),
+    ),
+    GetPage(
+      name: EShopRouteNames.rememberPassword,
+      page: () => const RememberPasswordPage(),
+      binding: BindingRememberPassword(),
+    ),
+    GetPage(
+      name: EShopRouteNames.editProfile,
+      page: () => const EditProfilePage(),
+      binding: BindingEditProfile(),
     ),
   ];
 }

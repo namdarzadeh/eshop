@@ -7,6 +7,8 @@ class PersonViewModel {
   String family;
   String address;
   String favorite;
+  String mobile;
+  String pic;
 
   PersonViewModel(
       {required this.id,
@@ -16,7 +18,9 @@ class PersonViewModel {
       required this.name,
       required this.family,
       required this.address,
-      required this.favorite});
+      required this.favorite,
+      required this.mobile,
+      required this.pic});
 
   factory PersonViewModel.fromJson(final Map<String, dynamic> json) =>
       PersonViewModel(
@@ -28,5 +32,7 @@ class PersonViewModel {
         family: json['family'],
         address: json['address'],
         favorite: json['favorite'],
+        mobile: json['mobile'],
+        pic: json['pic'],
       );
 }

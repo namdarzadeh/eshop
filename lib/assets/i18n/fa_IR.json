@@ -16,7 +16,9 @@
       "add_product_error": "ثبت کالا با خطا مواجه شد",
       "add_product_successful": "ثبت کالا با موفقیت انجام شد",
       "edit_product_error": "ویرایش کالا با خطا مواجه شد",
-      "edit_product_successful": "ویرایش کالا با موفقیت انجام شد"
+      "edit_product_successful": "ویرایش کالا با موفقیت انجام شد",
+      "user_not_found": "کاربر پیدا نشد",
+      "change_password_successful": "تغییر پسورد انجام شد"
     },
     "shared": {
       "edit": "ویرایش",
@@ -64,18 +66,22 @@
       "product_price": "قیمت کالا",
       "product_status": "وضعیت کالا :",
       "outofstock": "عدم موجودی",
-      "id": "شناسه"
+      "id": "شناسه",
+      "mobile": "موبایل",
+      "change_language": "تغییر زبان"
     },
     "login_page": {
       "singup_later": "--- قبلا ثبت نام کرده اید ---",
       "new_register": "--- کاربر جدید هستید ---",
-      "login": "ورود"
+      "login": "ورود",
+      "remember_password": "فراموشی رمز عبور"
     },
     "add_product_page": {
       "add_product": "افزودن کالا"
     },
     "product_list_admin_page": {
-      "shop_admin": "مدیریت فروشگاه"
+      "shop_admin": "مدیریت فروشگاه",
+      "product_list_admin": "ویترین محصولات"
     },
     "product_list_user_page": {
       "product_list": "لیست محصولات"
@@ -93,6 +99,9 @@
       "number": "تعداد",
       "number_product_per": "عدد کالا با",
       "submit_order": "ثبت سفارش"
+    },
+    "edit_profile_page": {
+      "edit_profile": "ویرایش پروفایل"
     }
   }
 }

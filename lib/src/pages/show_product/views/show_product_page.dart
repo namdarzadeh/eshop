@@ -41,9 +41,12 @@ class ShowProductPage extends GetView<ControllerShowProduct> {
                                             EShopUtils.largelistPadding(), 0),
                                         height: 100,
                                         width: 100,
-                                        child: Image.asset(
-                                            'lib/assets/icons/download.jpg',
-                                            package: 'eshop')),
+                                        child: controller.localPic.value
+                                            ? Image.asset(
+                                                'lib/assets/icons/product.png',
+                                                package: 'eshop')
+                                            : Image.memory(
+                                                controller.imageBytes)),
                                     Column(children: [
                                       Padding(
                                         padding: EdgeInsets.all(

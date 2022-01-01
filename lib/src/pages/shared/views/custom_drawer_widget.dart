@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 import '../../../../eshop.dart';
+import '../../../infrastructures/utils/eshop_utils.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
   const CustomDrawerWidget({
@@ -14,13 +18,65 @@ class CustomDrawerWidget extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
+            DrawerHeader(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
               ),
-              child: Text('تست'),
+              child: Center(
+                  child: Column(
+                children: [
+                  Container(
+                      decoration: const BoxDecoration(shape: BoxShape.circle),
+                      padding:
+                          EdgeInsets.only(bottom: EShopUtils.largePadding()),
+                      height: 100,
+                      width: 100,
+                      child: Image.memory(base64Decode(
+                          EShopParameters.localPersonViewModel.pic))),
+                  Text(
+                      '${EShopParameters.localPersonViewModel.name} ${EShopParameters.localPersonViewModel.family}'),
+                ],
+              )),
             ),
-            drawerItem('تست 1', '${EShopRouteNames.login}'),
+            drawerItem(LocaleKeys.eshop_edit_profile_page_edit_profile.tr,
+                EShopRouteNames.editProfile),
+            Visibility(
+                visible: EShopParameters.localPersonViewModel.isadmin == 0
+                    ? true
+                    : false,
+                child: drawerItem(
+                    LocaleKeys.eshop_cart_page_cart.tr, EShopRouteNames.cart)),
+            Visibility(
+                visible: EShopParameters.localPersonViewModel.isadmin == 1
+                    ? true
+                    : false,
+                child: drawerItem(
+                    LocaleKeys
+                        .eshop_product_list_admin_page_product_list_admin.tr,
+                    EShopRouteNames.productListAdmin)),
+            Visibility(
+                visible: EShopParameters.localPersonViewModel.isadmin == 1
+                    ? true
+                    : false,
+                child: drawerItem(
+                    LocaleKeys.eshop_add_product_page_add_product.tr,
+                    EShopRouteNames.addProduct)),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(80, 100, 80, 0),
+              child: ElevatedButton(
+                  onPressed: () {
+                    if (EShopParameters.defaultLanguage == 'fa') {
+                      const locale = Locale('en', 'US');
+                      Get.updateLocale(locale);
+                      EShopParameters.defaultLanguage = 'en';
+                    } else {
+                      const locale = Locale('fa', 'IR');
+                      Get.updateLocale(locale);
+                      EShopParameters.defaultLanguage = 'fa';
+                    }
+                  },
+                  child: Text(LocaleKeys.eshop_shared_change_language.tr)),
+            ),
           ],
         ),
       );

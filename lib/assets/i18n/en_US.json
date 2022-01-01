@@ -16,7 +16,9 @@
       "add_product_error": "add product error",
       "add_product_successful": "add product successful",
       "edit_product_error": "edit product error",
-      "edit_product_successful": "edit product successful"
+      "edit_product_successful": "edit product successful",
+      "user_not_found": "user not found",
+      "change_password_successful": "change password successful"
     },
     "shared": {
       "edit": "edit",
@@ -64,18 +66,22 @@
       "product_price": "product price",
       "product_status": "product status :",
       "outofstock": "out of stock",
-      "id": "id"
+      "id": "id",
+      "mobile": "mobile",
+      "change_language": "change language"
     },
     "login_page": {
       "singup_later": "--- You have already registered ---",
       "new_register": "--- You are a new user ---",
-      "login": "login"
+      "login": "login",
+      "remember_password": "remember password"
     },
     "add_product_page": {
       "add_product": "add product"
     },
     "product_list_admin_page": {
-      "shop_admin": "shop admin"
+      "shop_admin": "shop admin",
+      "product_list_admin": "product list"
     },
     "product_list_user_page": {
       "product_list": "products list"
@@ -93,6 +99,9 @@
       "number": "number",
       "number_product_per": "number product per",
       "submit_order": "submit order"
+    },
+    "edit_profile_page": {
+      "edit_profile": "edit profile"
     }
   }
 }

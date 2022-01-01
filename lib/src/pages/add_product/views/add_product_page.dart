@@ -114,15 +114,19 @@ class AddProductPage extends GetView<ControllerAddProduct> {
         child: Padding(
           padding: EdgeInsets.all(EShopUtils.allPagePadding()),
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              controller.imagePickerClick();
+            },
             child: Column(
               children: [
-                Container(
+                Obx(() => Container(
                     padding: EdgeInsets.only(bottom: EShopUtils.largePadding()),
                     height: 100,
                     width: 100,
-                    child: Image.asset('lib/assets/icons/product.png',
-                        package: 'eshop')),
+                    child: controller.localPic.value
+                        ? Image.asset('lib/assets/icons/product.png',
+                            package: 'eshop')
+                        : Image.memory(controller.imageBytes))),
                 Text(LocaleKeys.eshop_shared_select_picture.tr)
               ],
             ),

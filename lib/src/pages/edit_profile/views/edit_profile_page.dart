@@ -1,18 +1,21 @@
+import 'package:eshop/src/infrastructures/utils/eshop_utils.dart';
+import 'package:eshop/src/pages/shared/views/custom_drawer_widget.dart';
+import 'package:eshop/src/pages/shared/views/custom_lable_widget.dart';
+import 'package:eshop/src/pages/shared/views/custom_padding_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../eshop.dart';
-import '../../../infrastructures/utils/eshop_utils.dart';
-import '../../shared/views/custom_lable_widget.dart';
-import '../../shared/views/custom_padding_widget.dart';
-import '../controllers/controller_register.dart';
+import '../controllers/controller_edit_profile.dart';
 
-class RegisterPage extends GetView<ControllerRegister> {
-  const RegisterPage({final Key? key}) : super(key: key);
+class EditProfilePage extends GetView<ControllerEditProfile> {
+  const EditProfilePage({final Key? key}) : super(key: key);
 
   @override
   Widget build(final BuildContext context) => Scaffold(
-        appBar: AppBar(title: Text(LocaleKeys.eshop_shared_register.tr)),
+        appBar: AppBar(
+            title: Text(LocaleKeys.eshop_edit_profile_page_edit_profile.tr)),
+        drawer: const CustomDrawerWidget(),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(EShopUtils.allPagePadding()),
           child: Center(
@@ -54,12 +57,16 @@ class RegisterPage extends GetView<ControllerRegister> {
               CustomLableWidget(
                   controller: controller.controllerAddress,
                   title: LocaleKeys.eshop_shared_address.tr),
+              CustomLableWidget(
+                  controller: controller.controllerMobile,
+                  title: LocaleKeys.eshop_shared_mobile.tr),
               CustomPaddingWidget(
                   widget: ElevatedButton(
                       onPressed: () {
-                        controller.registerClick();
+                        controller.editProfileClick();
                       },
-                      child: Text(LocaleKeys.eshop_shared_register.tr))),
+                      child: Text(
+                          LocaleKeys.eshop_edit_profile_page_edit_profile.tr))),
             ],
           )),
         ),

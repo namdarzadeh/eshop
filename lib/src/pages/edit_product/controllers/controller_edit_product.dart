@@ -1,5 +1,10 @@
+import 'dart:convert';
+import 'dart:io' as io;
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../eshop.dart';
 import '../../shared/models/product_dto.dart';
@@ -15,6 +20,8 @@ class ControllerEditProduct extends GetxController {
   final TextEditingController controllerTag = TextEditingController();
   final RepositoriesEditProduct _repository = RepositoriesEditProduct();
   RxList<TagViewModel> tags = <TagViewModel>[].obs;
+  RxBool localPic = true.obs;
+  late Uint8List imageBytes;
   ProductViewModel product = ProductViewModel(
       id: 0,
       isactive: 0,
@@ -26,13 +33,15 @@ class ControllerEditProduct extends GetxController {
       tag: '');
   RxString localTags = ''.obs;
   RxBool productStatus = false.obs;
+  final ImagePicker _picker = ImagePicker();
+  String img64 = '';
 
   Future<int> _getProduct(final int id) async {
     product = await _repository.getProduct(id);
     return 1;
   }
 
-  void setProduct() {
+  void setProduct() async {
     product.isactive == 1
         ? productStatus.value = true
         : productStatus.value = false;
@@ -41,6 +50,10 @@ class ControllerEditProduct extends GetxController {
     controllerInstock.text = product.instock.toString();
     controllerDetails.text = product.details;
     localTags.value = product.tag;
+    await Future.delayed(const Duration(milliseconds: 2000));
+    imageBytes = base64ToByte(product.pic);
+    img64 = product.pic;
+    localPic.value = false;
   }
 
   Future<void> _editProduct() async {
@@ -49,7 +62,7 @@ class ControllerEditProduct extends GetxController {
         name: controllerName.text,
         price: int.tryParse(controllerPrice.text) ?? 0,
         instock: int.tryParse(controllerInstock.text) ?? 0,
-        pic: 'pic',
+        pic: img64,
         details: controllerDetails.text,
         tag: localTags.value);
     final int? _result = await _repository.editProduct(product.id, productDto);
@@ -114,6 +127,25 @@ class ControllerEditProduct extends GetxController {
     } else {
       await _editProduct();
     }
+  }
+
+  Uint8List base64ToByte(final String pic) {
+    final decodedBytes = base64Decode(pic);
+    return decodedBytes;
+  }
+
+  Future<String> imageToBase64(final XFile? _image) async {
+    final bytes = await io.File(_image!.path).readAsBytes();
+    imageBytes = bytes;
+    final String _img64 = base64Encode(bytes);
+    return _img64;
+  }
+
+  Future<void> imagePickerClick() async {
+    final XFile? _image = await _picker.pickImage(source: ImageSource.gallery);
+    img64 = await imageToBase64(_image);
+    localPic.value = true;
+    localPic.value = false;
   }
 
   @override

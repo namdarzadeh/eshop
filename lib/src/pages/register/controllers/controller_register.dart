@@ -1,5 +1,10 @@
+import 'dart:convert';
+import 'dart:io' as io;
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../eshop.dart';
 import '../../shared/models/person_dto.dart';
@@ -17,6 +22,10 @@ class ControllerRegister extends GetxController {
   final RepositoriesRegister _repository = RepositoriesRegister();
   List<PersonViewModel> person = <PersonViewModel>[];
   late PersonViewModel personViewModel;
+  String img64 = '';
+  RxBool localPic = true.obs;
+  late Uint8List imageBytes;
+  final ImagePicker _picker = ImagePicker();
 
   Future<void> _getPerson() async {
     person = await _repository.getPerson();
@@ -40,7 +49,9 @@ class ControllerRegister extends GetxController {
         name: controllerName.text,
         family: controllerFamily.text,
         address: controllerAddress.text,
-        favorite: '');
+        favorite: '',
+        mobile: '',
+        pic: img64);
     final int? _result = await _repository.addPerson(personDto);
     if (_result == 0) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
@@ -60,7 +71,8 @@ class ControllerRegister extends GetxController {
         controllerUsername.text.trim().isEmpty ||
         controllerPassword.text.trim().isEmpty ||
         controllerPasswordVerify.text.trim().isEmpty ||
-        controllerAddress.text.trim().isEmpty) {
+        controllerAddress.text.trim().isEmpty ||
+        img64.isEmpty) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content:
               Text(LocaleKeys.eshop_business_exception_fill_all_field.tr)));
@@ -79,5 +91,19 @@ class ControllerRegister extends GetxController {
         await _addPerson();
       }
     }
+  }
+
+  Future<String> imageToBase64(final XFile? _image) async {
+    final bytes = await io.File(_image!.path).readAsBytes();
+    imageBytes = bytes;
+    final String _img64 = base64Encode(bytes);
+    return _img64;
+  }
+
+  Future<void> imagePickerClick() async {
+    final XFile? _image = await _picker.pickImage(source: ImageSource.gallery);
+    img64 = await imageToBase64(_image);
+    localPic.value = true;
+    localPic.value = false;
   }
 }

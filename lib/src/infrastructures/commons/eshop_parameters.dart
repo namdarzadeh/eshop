@@ -7,4 +7,5 @@ mixin EShopParameters {
   static late String fullBaseUrl;
   static List<GetPage> pages = EShopRoutePages.routes;
   static late PersonViewModel localPersonViewModel;
+  static String defaultLanguage = 'fa';
 }

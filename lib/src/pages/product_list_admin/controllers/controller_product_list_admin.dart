@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +14,6 @@ class ControllerProductListAdmin extends GetxController {
   final RepositoriesProductListAdmin _repository =
       RepositoriesProductListAdmin();
   RxList<ProductViewModel> products = <ProductViewModel>[].obs;
-
   Future<int> _getProducts() async {
     products.value = await _repository.getProducts();
     return 1;
@@ -68,6 +70,11 @@ class ControllerProductListAdmin extends GetxController {
     if (_result == 1) {
       await _getProducts();
     }
+  }
+
+  Uint8List base64ToByte(final String pic) {
+    final decodedBytes = base64Decode(pic);
+    return decodedBytes;
   }
 
   @override

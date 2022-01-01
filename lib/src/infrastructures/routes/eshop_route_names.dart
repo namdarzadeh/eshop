@@ -8,4 +8,6 @@ class EShopRouteNames {
   static const String editProduct = '/eshop_edit_product';
   static const String showProduct = '/eshop_show_product';
   static const String cart = '/eshop_cart';
+  static const String rememberPassword = '/eshop_remember_password';
+  static const String editProfile = '/eshop_edit_profile';
 }

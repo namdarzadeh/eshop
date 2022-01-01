@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:get/get.dart';
 
 import '../../shared/models/product_view_model.dart';
@@ -11,6 +14,11 @@ class ControllerProductListUser extends GetxController {
   Future<int> _getProducts() async {
     products.value = await _repository.getProducts();
     return 1;
+  }
+
+  Uint8List base64ToByte(final String pic) {
+    final decodedBytes = base64Decode(pic);
+    return decodedBytes;
   }
 
   @override

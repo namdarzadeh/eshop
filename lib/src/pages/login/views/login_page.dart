@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../../eshop.dart';
 import '../../../infrastructures/utils/eshop_utils.dart';
-import '../../shared/views/custom_drawer_widget.dart';
 import '../../shared/views/custom_lable_widget.dart';
 import '../../shared/views/custom_padding_widget.dart';
 import '../controllers/controller_login.dart';
@@ -14,7 +13,6 @@ class LoginPage extends GetView<ControllerLogin> {
   @override
   Widget build(final BuildContext context) => Scaffold(
         appBar: AppBar(title: Text(LocaleKeys.eshop_shared_online_shop.tr)),
-        drawer: const CustomDrawerWidget(),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(EShopUtils.allPagePadding()),
           child: Center(
@@ -25,15 +23,30 @@ class LoginPage extends GetView<ControllerLogin> {
               CustomLableWidget(
                   controller: controller.controllerUsername,
                   title: LocaleKeys.eshop_shared_username.tr),
-              CustomLableWidget(
-                  controller: controller.controllerPassword,
-                  title: LocaleKeys.eshop_shared_password.tr),
+              Padding(
+                  padding: EdgeInsets.all(EShopUtils.lableWidgetPadding()),
+                  child: TextField(
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
+                      controller: controller.controllerPassword,
+                      decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        labelText: LocaleKeys.eshop_shared_password.tr,
+                      ))),
               CustomPaddingWidget(
                   widget: ElevatedButton(
                       onPressed: () {
                         controller.loginClick();
                       },
                       child: Text(LocaleKeys.eshop_login_page_login.tr))),
+              CustomPaddingWidget(
+                  widget: InkWell(
+                onTap: () {
+                  Get.toNamed(EShopRouteNames.rememberPassword);
+                },
+                child: Text(LocaleKeys.eshop_login_page_remember_password.tr),
+              )),
               CustomPaddingWidget(
                   widget: Text(LocaleKeys.eshop_login_page_new_register.tr)),
               CustomPaddingWidget(

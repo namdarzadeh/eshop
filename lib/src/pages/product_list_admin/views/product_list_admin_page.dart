@@ -1,5 +1,3 @@
-import 'package:eshop/src/pages/shared/views/custom_padding_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,6 +5,7 @@ import '../../../../eshop.dart';
 import '../../../infrastructures/utils/eshop_utils.dart';
 import '../../shared/models/product_view_model.dart';
 import '../../shared/views/custom_drawer_widget.dart';
+import '../../shared/views/custom_padding_widget.dart';
 import '../../shared/views/custom_switch_widget.dart';
 import '../controllers/controller_product_list_admin.dart';
 
@@ -16,7 +15,8 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
   @override
   Widget build(final BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text(LocaleKeys.eshop_product_list_admin_page_shop_admin.tr),
+          title: Text(
+              LocaleKeys.eshop_product_list_admin_page_product_list_admin.tr),
           actions: [
             // Navigate to the Search Screen
             IconButton(
@@ -75,9 +75,8 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                           Container(
                               height: 100,
                               width: 100,
-                              child: Image.asset(
-                                  'lib/assets/icons/download.jpg',
-                                  package: 'eshop')),
+                              child: Image.memory(
+                                  controller.base64ToByte(product.pic))),
                           Column(children: [
                             Padding(
                               padding:

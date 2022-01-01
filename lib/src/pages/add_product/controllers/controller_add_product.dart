@@ -1,5 +1,10 @@
+import 'dart:convert';
+import 'dart:io' as io;
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../eshop.dart';
 import '../../shared/models/product_dto.dart';
@@ -13,9 +18,13 @@ class ControllerAddProduct extends GetxController {
   final TextEditingController controllerDetails = TextEditingController();
   final TextEditingController controllerTag = TextEditingController();
   final RepositoriesAddProduct _repository = RepositoriesAddProduct();
+  String img64 = '';
   RxList<TagViewModel> tags = <TagViewModel>[].obs;
   RxString localTags = ''.obs;
+  RxBool localPic = true.obs;
+  late Uint8List imageBytes;
   RxBool productStatus = false.obs;
+  final ImagePicker _picker = ImagePicker();
 
   Future<void> _addProduct() async {
     final ProductDto productDto = ProductDto(
@@ -23,7 +32,7 @@ class ControllerAddProduct extends GetxController {
         name: controllerName.text,
         price: int.tryParse(controllerPrice.text) ?? 0,
         instock: int.tryParse(controllerInstock.text) ?? 0,
-        pic: 'pic',
+        pic: img64,
         details: controllerDetails.text,
         tag: localTags.value);
     final int? _result = await _repository.addProduct(productDto);
@@ -88,5 +97,19 @@ class ControllerAddProduct extends GetxController {
     } else {
       await _addProduct();
     }
+  }
+
+  Future<String> imageToBase64(final XFile? _image) async {
+    final bytes = await io.File(_image!.path).readAsBytes();
+    imageBytes = bytes;
+    final String _img64 = base64Encode(bytes);
+    return _img64;
+  }
+
+  Future<void> imagePickerClick() async {
+    final XFile? _image = await _picker.pickImage(source: ImageSource.gallery);
+    img64 = await imageToBase64(_image);
+    localPic.value = true;
+    localPic.value = false;
   }
 }

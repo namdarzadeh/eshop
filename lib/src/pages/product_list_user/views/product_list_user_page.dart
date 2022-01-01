@@ -71,9 +71,8 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                                   0, 0, EShopUtils.largelistPadding(), 0),
                               height: 100,
                               width: 100,
-                              child: Image.asset(
-                                  'lib/assets/icons/download.jpg',
-                                  package: 'eshop')),
+                              child: Image.memory(
+                                  controller.base64ToByte(product.pic))),
                           Column(children: [
                             Padding(
                               padding:
