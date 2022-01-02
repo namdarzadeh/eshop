@@ -6,6 +6,8 @@ import 'package:eshop/src/pages/edit_profile/commons/binding_edit_profile.dart';
 import 'package:eshop/src/pages/edit_profile/views/edit_profile_page.dart';
 import 'package:eshop/src/pages/remember_password/commons/binding_remember_password.dart';
 import 'package:eshop/src/pages/remember_password/views/remember_password_page.dart';
+import 'package:eshop/src/pages/search/commons/binding_search.dart';
+import 'package:eshop/src/pages/search/views/search_page.dart';
 import 'package:eshop/src/pages/show_product/commons/binding_show_product.dart';
 import 'package:eshop/src/pages/show_product/views/show_product_page.dart';
 import 'package:get/get.dart';
@@ -79,6 +81,11 @@ class EShopRoutePages {
       name: EShopRouteNames.editProfile,
       page: () => const EditProfilePage(),
       binding: BindingEditProfile(),
+    ),
+    GetPage(
+      name: EShopRouteNames.search,
+      page: () => const SearchPage(),
+      binding: BindingSearch(),
     ),
   ];
 }

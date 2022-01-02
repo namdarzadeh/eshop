@@ -13,30 +13,32 @@ class NumberPickerSmallWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(final BuildContext context) => Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Row(
-          children: [
-            IconButton(
-              iconSize: 15,
-              icon: const Icon(Icons.add),
-              onPressed: () {
-                sendNumber(++number.value);
-              },
-            ),
-            Obx(() => Text(number.toString())),
-            IconButton(
-              iconSize: 15,
-              icon: const Icon(Icons.remove),
-              onPressed: () {
-                if (number.value != 0) {
-                  sendNumber(--number.value);
-                }
-              },
-            ),
-          ],
-        ),
-      );
+  Widget build(final BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Row(
+        children: [
+          IconButton(
+            iconSize: 15,
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              sendNumber(++number.value);
+            },
+          ),
+          Obx(() => Text(number.toString())),
+          IconButton(
+            iconSize: 15,
+            icon: const Icon(Icons.remove),
+            onPressed: () {
+              if (number.value != 0) {
+                sendNumber(--number.value);
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  }
 }

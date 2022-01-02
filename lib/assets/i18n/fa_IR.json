@@ -60,15 +60,17 @@
       "active": "فعال",
       "deactive": "غیر فعال",
       "favorit": "علاقه مندی",
-      "price_renge": ": محدوده قیمت",
-      "only_available_product": ": فقط کالاهای موجود",
+      "price_renge": "محدوده قیمت :",
+      "only_available_product": "فقط کالاهای موجود :",
       "product_name": "نام کالا",
       "product_price": "قیمت کالا",
       "product_status": "وضعیت کالا :",
       "outofstock": "عدم موجودی",
       "id": "شناسه",
       "mobile": "موبایل",
-      "change_language": "تغییر زبان"
+      "change_language": "تغییر زبان",
+      "filter_done": "اعمال فیلتر",
+      "price": "قیمت"
     },
     "login_page": {
       "singup_later": "--- قبلا ثبت نام کرده اید ---",
@@ -81,7 +83,7 @@
     },
     "product_list_admin_page": {
       "shop_admin": "مدیریت فروشگاه",
-      "product_list_admin": "ویترین محصولات"
+      "product_list_admin": "ویترین فروشگاه"
     },
     "product_list_user_page": {
       "product_list": "لیست محصولات"
@@ -97,7 +99,7 @@
       "unit_price": "قیمت واحد",
       "total_price": "قیمت مجموع",
       "number": "تعداد",
-      "number_product_per": "عدد کالا با",
+      "number_product_per": "قلم کالا با",
       "submit_order": "ثبت سفارش"
     },
     "edit_profile_page": {

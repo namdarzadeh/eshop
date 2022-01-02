@@ -68,7 +68,9 @@
       "outofstock": "out of stock",
       "id": "id",
       "mobile": "mobile",
-      "change_language": "change language"
+      "change_language": "change language",
+      "filter_done": "filter done",
+      "price": "price"
     },
     "login_page": {
       "singup_later": "--- You have already registered ---",

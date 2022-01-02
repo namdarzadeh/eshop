@@ -11,6 +11,8 @@ class EShopUtils {
 
   static double allPagePadding() => 20;
 
+  static double filterTopPadding() => 50;
+
   static double allWidgetPadding() => 15;
 
   static double lableWidgetPadding() => 15;

@@ -4,7 +4,6 @@ import 'package:number_picker/views/number_picker_small_widget.dart';
 
 import '../../../../eshop.dart';
 import '../../../infrastructures/utils/eshop_utils.dart';
-import '../../shared/models/product_view_model.dart';
 import '../../shared/views/custom_drawer_widget.dart';
 import '../../shared/views/custom_padding_widget.dart';
 import '../controllers/controller_cart.dart';
@@ -17,7 +16,6 @@ class CartPage extends GetView<ControllerCart> {
         appBar: AppBar(
           title: Text(LocaleKeys.eshop_cart_page_cart.tr),
           actions: [
-            // Navigate to the Search Screen
             IconButton(
                 onPressed: Get.back,
                 icon: const Icon(Icons.arrow_forward_outlined))
@@ -92,9 +90,10 @@ class CartPage extends GetView<ControllerCart> {
                             padding: EdgeInsets.all(EShopUtils.smallPadding()),
                             child: Text(
                                 '${LocaleKeys.eshop_cart_page_number.tr} '
-                                '${controller.orders.length} '
+                                '${controller.number} '
                                 '${LocaleKeys.eshop_cart_page_number_product_per.tr} '
-                                '${LocaleKeys.eshop_cart_page_total_price.tr} 0 '
+                                '${LocaleKeys.eshop_cart_page_total_price.tr} '
+                                '${controller.totalPrice} '
                                 '${LocaleKeys.eshop_shared_toman.tr}',
                                 style: TextStyle(
                                     fontSize: EShopUtils.mediumTextSize())),
@@ -114,53 +113,57 @@ class CartPage extends GetView<ControllerCart> {
 
   List<Widget> orderList(final BuildContext context) {
     final List<Widget> products = [];
-    for (var i in controller.orders.value) {
+    for (var i in EShopParameters.orders.value) {
       products.add(buildRow(i, context));
     }
     return products;
   }
 
-  Padding buildRow(
-          final ProductViewModel product, final BuildContext context) =>
-      Padding(
-        padding: EdgeInsets.only(bottom: EShopUtils.largePadding()),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Padding(
-            padding: EdgeInsets.all(EShopUtils.smallPadding()),
-            child: Text(product.name,
-                style: TextStyle(fontSize: EShopUtils.smallTextSize())),
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(EShopUtils.smallPadding()),
-                child: Text(product.price.toString(),
-                    style: TextStyle(fontSize: EShopUtils.smallTextSize())),
-              ),
-              Padding(
-                padding: EdgeInsets.all(EShopUtils.smallPadding()),
-                child: Text(LocaleKeys.eshop_shared_toman.tr,
-                    style: TextStyle(fontSize: EShopUtils.smallTextSize())),
-              ),
-            ],
-          ),
-          NumberPickerSmallWidget(
-              sendNumber: (final i) => print(i), number: controller.number),
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(EShopUtils.smallPadding()),
-                child: Text('product.name',
-                    style: TextStyle(fontSize: EShopUtils.smallTextSize())),
-              ),
-              Padding(
-                padding: EdgeInsets.all(EShopUtils.smallPadding()),
-                child: Text(LocaleKeys.eshop_shared_toman.tr,
-                    style: TextStyle(fontSize: EShopUtils.smallTextSize())),
-              ),
-            ],
-          ),
-        ]),
-      );
+  Padding buildRow(final List<dynamic> product, final BuildContext context) {
+    final RxInt _number = 0.obs;
+    _number.value = product[2];
+    controller.number.value = controller.number.value + product[2] as int;
+    controller.totalPrice.value =
+        controller.totalPrice.value + product[1] * product[2] as int;
+    return Padding(
+      padding: EdgeInsets.only(bottom: EShopUtils.largePadding()),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Padding(
+          padding: EdgeInsets.all(EShopUtils.smallPadding()),
+          child: Text(product[0],
+              style: TextStyle(fontSize: EShopUtils.smallTextSize())),
+        ),
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(EShopUtils.smallPadding()),
+              child: Text(product[1].toString(),
+                  style: TextStyle(fontSize: EShopUtils.smallTextSize())),
+            ),
+            Padding(
+              padding: EdgeInsets.all(EShopUtils.smallPadding()),
+              child: Text(LocaleKeys.eshop_shared_toman.tr,
+                  style: TextStyle(fontSize: EShopUtils.smallTextSize())),
+            ),
+          ],
+        ),
+        NumberPickerSmallWidget(
+            sendNumber: (final i) => print(i), number: _number),
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(EShopUtils.smallPadding()),
+              child: Text('${product[1] * product[2]}',
+                  style: TextStyle(fontSize: EShopUtils.smallTextSize())),
+            ),
+            Padding(
+              padding: EdgeInsets.all(EShopUtils.smallPadding()),
+              child: Text(LocaleKeys.eshop_shared_toman.tr,
+                  style: TextStyle(fontSize: EShopUtils.smallTextSize())),
+            ),
+          ],
+        ),
+      ]),
+    );
+  }
 }

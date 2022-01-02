@@ -11,9 +11,12 @@ import '../repositories/repositories_product_list_admin.dart';
 import '../views/dialogs/delete_product_dialog.dart';
 
 class ControllerProductListAdmin extends GetxController {
+  GlobalKey<ScaffoldState> scafoldKey = GlobalKey<ScaffoldState>();
   final RepositoriesProductListAdmin _repository =
       RepositoriesProductListAdmin();
   RxList<ProductViewModel> products = <ProductViewModel>[].obs;
+  RxBool searchMode = false.obs;
+
   Future<int> _getProducts() async {
     products.value = await _repository.getProducts();
     return 1;
@@ -75,6 +78,26 @@ class ControllerProductListAdmin extends GetxController {
   Uint8List base64ToByte(final String pic) {
     final decodedBytes = base64Decode(pic);
     return decodedBytes;
+  }
+
+  Future<void> searchClick() async {
+    final List<ProductViewModel> backProducts =
+        await Get.toNamed(EShopRouteNames.search);
+    if (backProducts.isNotEmpty) {
+      products.value = backProducts;
+      searchMode.value = true;
+    }
+  }
+
+  Future<void> clearSearchClick() async {
+    await _getProducts();
+    searchMode.value = false;
+  }
+
+  Future<void> clearFilterClick() async {
+    await _getProducts();
+    EShopParameters.filterResult = [false, 0, 1000000000, false];
+    EShopParameters.filterMode.value = false;
   }
 
   @override

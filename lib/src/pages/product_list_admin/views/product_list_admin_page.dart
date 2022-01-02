@@ -1,3 +1,4 @@
+import 'package:eshop/src/pages/shared/views/custom_filter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,15 +15,43 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
 
   @override
   Widget build(final BuildContext context) => Scaffold(
+        key: controller.scafoldKey,
         appBar: AppBar(
           title: Text(
               LocaleKeys.eshop_product_list_admin_page_product_list_admin.tr),
           actions: [
-            // Navigate to the Search Screen
-            IconButton(
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (final _) => const SearchPage())),
-                icon: const Icon(Icons.search))
+            Obx(() => Visibility(
+                  visible: !controller.searchMode.value,
+                  child: IconButton(
+                      onPressed: () {
+                        controller.searchClick();
+                      },
+                      icon: const Icon(Icons.search)),
+                )),
+            Obx(() => Visibility(
+                  visible: controller.searchMode.value,
+                  child: IconButton(
+                      onPressed: () {
+                        controller.clearSearchClick();
+                      },
+                      icon: const Icon(Icons.clear)),
+                )),
+            Obx(() => Visibility(
+                  visible: !EShopParameters.filterMode.value,
+                  child: IconButton(
+                      onPressed: () {
+                        controller.scafoldKey.currentState?.openEndDrawer();
+                      },
+                      icon: const Icon(Icons.filter_list_rounded)),
+                )),
+            Obx(() => Visibility(
+                  visible: EShopParameters.filterMode.value,
+                  child: IconButton(
+                      onPressed: () {
+                        controller.clearFilterClick();
+                      },
+                      icon: const Icon(Icons.clear)),
+                )),
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -33,6 +62,7 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
           child: const Icon(Icons.add),
         ),
         drawer: const CustomDrawerWidget(),
+        endDrawer: CustomFilterWidget(),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(EShopUtils.allPagePadding()),
           child: Center(
@@ -47,7 +77,20 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
   List<Widget> productList(final BuildContext context) {
     final List<Widget> products = [];
     for (var i in controller.products.value) {
-      products.add(buildCard(i, context));
+      if (EShopParameters.filterMode.value) {
+        if (i.price >= EShopParameters.filterResult[0] &&
+            i.price <= EShopParameters.filterResult[1]) {
+          if (EShopParameters.filterResult[2] == true) {
+            if (i.instock > 0) {
+              products.add(buildCard(i, context));
+            }
+          } else {
+            products.add(buildCard(i, context));
+          }
+        }
+      } else {
+        products.add(buildCard(i, context));
+      }
     }
     return products;
   }
@@ -189,33 +232,5 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
             ),
           ),
         ),
-      );
-}
-
-class SearchPage extends StatelessWidget {
-  const SearchPage({final Key? key}) : super(key: key);
-
-  @override
-  Widget build(final BuildContext context) => Scaffold(
-        appBar: AppBar(
-            // The search area here
-            title: Container(
-          width: double.infinity,
-          height: 40,
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(5)),
-          child: Center(
-            child: TextField(
-              decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.clear),
-                    onPressed: () {},
-                  ),
-                  hintText: LocaleKeys.eshop_shared_search.tr,
-                  border: InputBorder.none),
-            ),
-          ),
-        )),
       );
 }

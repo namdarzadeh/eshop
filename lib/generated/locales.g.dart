@@ -97,6 +97,8 @@ class LocaleKeys {
   static const eshop_shared_id = 'eshop_shared_id';
   static const eshop_shared_mobile = 'eshop_shared_mobile';
   static const eshop_shared_change_language = 'eshop_shared_change_language';
+  static const eshop_shared_filter_done = 'eshop_shared_filter_done';
+  static const eshop_shared_price = 'eshop_shared_price';
   static const eshop_login_page_singup_later = 'eshop_login_page_singup_later';
   static const eshop_login_page_new_register = 'eshop_login_page_new_register';
   static const eshop_login_page_login = 'eshop_login_page_login';
@@ -196,6 +198,8 @@ class Locales {
     'eshop_shared_id': 'id',
     'eshop_shared_mobile': 'mobile',
     'eshop_shared_change_language': 'change language',
+    'eshop_shared_filter_done': 'filter done',
+    'eshop_shared_price': 'price',
     'eshop_login_page_singup_later': '--- You have already registered ---',
     'eshop_login_page_new_register': '--- You are a new user ---',
     'eshop_login_page_login': 'login',
@@ -281,8 +285,8 @@ class Locales {
     'eshop_shared_active': 'فعال',
     'eshop_shared_deactive': 'غیر فعال',
     'eshop_shared_favorit': 'علاقه مندی',
-    'eshop_shared_price_renge': ': محدوده قیمت',
-    'eshop_shared_only_available_product': ': فقط کالاهای موجود',
+    'eshop_shared_price_renge': 'محدوده قیمت :',
+    'eshop_shared_only_available_product': 'فقط کالاهای موجود :',
     'eshop_shared_product_name': 'نام کالا',
     'eshop_shared_product_price': 'قیمت کالا',
     'eshop_shared_product_status': 'وضعیت کالا :',
@@ -290,13 +294,15 @@ class Locales {
     'eshop_shared_id': 'شناسه',
     'eshop_shared_mobile': 'موبایل',
     'eshop_shared_change_language': 'تغییر زبان',
+    'eshop_shared_filter_done': 'اعمال فیلتر',
+    'eshop_shared_price': 'قیمت',
     'eshop_login_page_singup_later': '--- قبلا ثبت نام کرده اید ---',
     'eshop_login_page_new_register': '--- کاربر جدید هستید ---',
     'eshop_login_page_login': 'ورود',
     'eshop_login_page_remember_password': 'فراموشی رمز عبور',
     'eshop_add_product_page_add_product': 'افزودن کالا',
     'eshop_product_list_admin_page_shop_admin': 'مدیریت فروشگاه',
-    'eshop_product_list_admin_page_product_list_admin': 'ویترین محصولات',
+    'eshop_product_list_admin_page_product_list_admin': 'ویترین فروشگاه',
     'eshop_product_list_user_page_product_list': 'لیست محصولات',
     'eshop_edit_product_page_edit_product': 'ویرایش کالا',
     'eshop_product_details_page_id': 'شناسه',
@@ -304,7 +310,7 @@ class Locales {
     'eshop_cart_page_unit_price': 'قیمت واحد',
     'eshop_cart_page_total_price': 'قیمت مجموع',
     'eshop_cart_page_number': 'تعداد',
-    'eshop_cart_page_number_product_per': 'عدد کالا با',
+    'eshop_cart_page_number_product_per': 'قلم کالا با',
     'eshop_cart_page_submit_order': 'ثبت سفارش',
     'eshop_edit_profile_page_edit_profile': 'ویرایش پروفایل',
   };
