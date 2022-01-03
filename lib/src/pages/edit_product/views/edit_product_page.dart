@@ -119,15 +119,20 @@ class EditProductPage extends GetView<ControllerEditProduct> {
             },
             child: Column(
               children: [
-                Obx(() => Container(
-                    padding: EdgeInsets.only(bottom: EShopUtils.largePadding()),
-                    height: 100,
-                    width: 100,
-                    child: controller.localPic.value
-                        ? Image.asset('lib/assets/icons/product.png',
-                            package: 'eshop')
-                        : Image.memory(controller.imageBytes))),
-                Text(LocaleKeys.eshop_shared_select_picture.tr)
+                Obx(() => ClipOval(
+                      child: Container(
+                          height: 100,
+                          width: 100,
+                          child: controller.localPic.value
+                              ? Image.asset('lib/assets/icons/product.png',
+                                  package: 'eshop', fit: BoxFit.cover)
+                              : Image.memory(controller.imageBytes,
+                                  fit: BoxFit.cover)),
+                    )),
+                Padding(
+                  padding: EdgeInsets.only(top: EShopUtils.largePadding()),
+                  child: Text(LocaleKeys.eshop_shared_select_picture.tr),
+                )
               ],
             ),
           ),

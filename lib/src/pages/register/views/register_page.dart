@@ -12,7 +12,14 @@ class RegisterPage extends GetView<ControllerRegister> {
 
   @override
   Widget build(final BuildContext context) => Scaffold(
-        appBar: AppBar(title: Text(LocaleKeys.eshop_shared_register.tr)),
+        appBar: AppBar(
+          title: Text(LocaleKeys.eshop_shared_register.tr),
+          actions: [
+            IconButton(
+                onPressed: Get.back,
+                icon: const Icon(Icons.arrow_forward_outlined))
+          ],
+        ),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(EShopUtils.allPagePadding()),
           child: Center(
@@ -74,15 +81,20 @@ class RegisterPage extends GetView<ControllerRegister> {
             },
             child: Column(
               children: [
-                Obx(() => Container(
-                    padding: EdgeInsets.only(bottom: EShopUtils.largePadding()),
-                    height: 100,
-                    width: 100,
-                    child: controller.localPic.value
-                        ? Image.asset('lib/assets/icons/profile.png',
-                            package: 'eshop')
-                        : Image.memory(controller.imageBytes))),
-                Text(LocaleKeys.eshop_shared_select_picture.tr)
+                Obx(() => ClipOval(
+                      child: Container(
+                          height: 100,
+                          width: 100,
+                          child: controller.localPic.value
+                              ? Image.asset('lib/assets/icons/profile.png',
+                                  package: 'eshop', fit: BoxFit.cover)
+                              : Image.memory(controller.imageBytes,
+                                  fit: BoxFit.cover)),
+                    )),
+                Padding(
+                  padding: EdgeInsets.only(bottom: EShopUtils.largePadding()),
+                  child: Text(LocaleKeys.eshop_shared_select_picture.tr),
+                )
               ],
             ),
           ),

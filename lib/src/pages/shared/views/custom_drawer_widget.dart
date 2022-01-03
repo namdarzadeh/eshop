@@ -25,16 +25,20 @@ class CustomDrawerWidget extends StatelessWidget {
               child: Center(
                   child: Column(
                 children: [
-                  Container(
-                      decoration: const BoxDecoration(shape: BoxShape.circle),
-                      padding:
-                          EdgeInsets.only(bottom: EShopUtils.largePadding()),
-                      height: 100,
-                      width: 100,
-                      child: Image.memory(base64Decode(
-                          EShopParameters.localPersonViewModel.pic))),
-                  Text(
-                      '${EShopParameters.localPersonViewModel.name} ${EShopParameters.localPersonViewModel.family}'),
+                  ClipOval(
+                    child: Container(
+                        height: 100,
+                        width: 100,
+                        child: Image.memory(
+                            base64Decode(
+                                EShopParameters.localPersonViewModel.pic),
+                            fit: BoxFit.cover)),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: EShopUtils.largePadding()),
+                    child: Text(
+                        '${EShopParameters.localPersonViewModel.name} ${EShopParameters.localPersonViewModel.family}'),
+                  ),
                 ],
               )),
             ),

@@ -1,4 +1,5 @@
 import 'package:eshop/src/pages/shared/views/custom_filter_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:number_picker/views/number_picker_widget.dart';
@@ -35,7 +36,7 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                       icon: const Icon(Icons.clear)),
                 )),
             IconButton(
-                onPressed: () => Get.toNamed(EShopRouteNames.cart),
+                onPressed: () => controller.cartClick(),
                 icon: const Icon(Icons.shopping_cart_rounded)),
             Obx(() => Visibility(
                   visible: !EShopParameters.filterMode.value,
@@ -91,7 +92,7 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
 
   Padding buildCard(
       final ProductViewModel product, final BuildContext context) {
-    final RxInt _number = 0.obs;
+    final RxInt _number = controller.getnumber(product).obs;
     return Padding(
       padding: EdgeInsets.only(bottom: EShopUtils.largePadding()),
       child: Card(
@@ -101,26 +102,28 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
           padding: EdgeInsets.all(EShopUtils.largePadding()),
           child: InkWell(
             onTap: () {
-              Get.toNamed(EShopRouteNames.showProduct, arguments: product);
+              controller.showProductClick(product);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        Container(
-                            padding: EdgeInsets.fromLTRB(
-                                0, 0, EShopUtils.largelistPadding(), 0),
-                            height: 100,
-                            width: 100,
-                            child: Image.memory(
-                                controller.base64ToByte(product.pic))),
+                        ClipOval(
+                          child: Container(
+                              height: 100,
+                              width: 100,
+                              child: Image.memory(
+                                  controller.base64ToByte(product.pic),
+                                  fit: BoxFit.cover)),
+                        ),
                         Column(children: [
                           Padding(
                             padding: EdgeInsets.all(EShopUtils.smallPadding()),
-                            child: Text(product.name,
+                            child: Text('  ${product.name}',
                                 style: TextStyle(
                                     fontSize: EShopUtils.largeTextSize())),
                           ),
@@ -128,7 +131,7 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                             padding: EdgeInsets.all(EShopUtils.smallPadding()),
                             child: Row(
                               children: [
-                                Text(product.price.toString()),
+                                Text('  ${product.price.toString()} '),
                                 Text(LocaleKeys.eshop_shared_toman.tr)
                               ],
                             ),
@@ -140,7 +143,7 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                       padding: EdgeInsets.all(EShopUtils.smallPadding()),
                       child: Row(
                         children: [
-                          Text(LocaleKeys.eshop_shared_details.tr),
+                          Text('${LocaleKeys.eshop_shared_details.tr} : '),
                           Text(product.details)
                         ],
                       ),
@@ -149,7 +152,7 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                       padding: EdgeInsets.all(EShopUtils.smallPadding()),
                       child: Row(
                         children: [
-                          Text(LocaleKeys.eshop_shared_tag.tr),
+                          Text('${LocaleKeys.eshop_shared_tag.tr} : '),
                           Text(product.tag)
                         ],
                       ),
@@ -159,6 +162,7 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                 Column(
                   children: [
                     Card(
+                      elevation: 2,
                       child: Padding(
                         padding: EdgeInsets.all(EShopUtils.largePadding()),
                         child: InkWell(
@@ -166,13 +170,12 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                           child: Column(
                             children: [
                               Container(
-                                  padding: EdgeInsets.only(
-                                      bottom: EShopUtils.largePadding()),
-                                  height: 30,
-                                  width: 30,
-                                  child: Image.asset(
-                                      'lib/assets/icons/icfav.png',
-                                      package: 'eshop')),
+                                padding: EdgeInsets.only(
+                                    bottom: EShopUtils.largePadding()),
+                                height: 50,
+                                width: 50,
+                                child: const Icon(Icons.favorite),
+                              ),
                               Text(LocaleKeys.eshop_shared_favorit.tr,
                                   style: TextStyle(
                                       fontSize: EShopUtils.smallTextSize()))
@@ -184,9 +187,10 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                     NumberPickerWidget(
                         sendNumber: (final i) {
                           _number.value = i;
-                          controller.addToCart(product, _number.value);
+                          controller.updateCart(product, _number.value);
                         },
-                        number: _number)
+                        number: _number,
+                        size: EShopUtils.largePadding())
                   ],
                 ),
               ],

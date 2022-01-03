@@ -44,7 +44,17 @@ class ControllerProductListUser extends GetxController {
     EShopParameters.filterMode.value = false;
   }
 
-  void addToCart(final ProductViewModel product, final int number) {
+  int getnumber(final ProductViewModel product) {
+    int _result = 0;
+    EShopParameters.orders.forEach((final element) {
+      if (element[0] == product.name) {
+        _result = element[2];
+      }
+    });
+    return _result;
+  }
+
+  void updateCart(final ProductViewModel product, final int number) {
     int _result = 0;
     EShopParameters.orders.forEach((final element) {
       if (element[0] == product.name) {
@@ -55,6 +65,16 @@ class ControllerProductListUser extends GetxController {
     if (_result == 0) {
       EShopParameters.orders.add([product.name, product.price, number]);
     }
+  }
+
+  Future<void> cartClick() async {
+    await Get.toNamed(EShopRouteNames.cart);
+    await _getProducts();
+  }
+
+  Future<void> showProductClick(final ProductViewModel product) async {
+    await Get.toNamed(EShopRouteNames.showProduct, arguments: product);
+    await _getProducts();
   }
 
   @override

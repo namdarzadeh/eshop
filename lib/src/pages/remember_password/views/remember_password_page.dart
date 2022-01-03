@@ -13,7 +13,13 @@ class RememberPasswordPage extends GetView<ControllerRememberPassword> {
   @override
   Widget build(final BuildContext context) => Scaffold(
         appBar: AppBar(
-            title: Text(LocaleKeys.eshop_login_page_remember_password.tr)),
+          title: Text(LocaleKeys.eshop_login_page_remember_password.tr),
+          actions: [
+            IconButton(
+                onPressed: Get.back,
+                icon: const Icon(Icons.arrow_forward_outlined))
+          ],
+        ),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(EShopUtils.allPagePadding()),
           child: Center(

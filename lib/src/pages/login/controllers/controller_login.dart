@@ -64,6 +64,6 @@ class ControllerLogin extends GetxController {
   }
 
   void registerClick() {
-    Get.offNamed(EShopRouteNames.register);
+    Get.toNamed(EShopRouteNames.register);
   }
 }

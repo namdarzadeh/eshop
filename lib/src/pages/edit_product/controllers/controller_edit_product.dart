@@ -112,7 +112,7 @@ class ControllerEditProduct extends GetxController {
       if (_result == 0) {
         await _addtag(controllerTag.text);
       }
-      localTags.value = '$localTags #${controllerTag.text}';
+      localTags.value = '$localTags ${controllerTag.text}';
     }
   }
 

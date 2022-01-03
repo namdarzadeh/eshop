@@ -1,11 +1,11 @@
-import 'package:eshop/src/infrastructures/utils/eshop_utils.dart';
-import 'package:eshop/src/pages/shared/views/custom_drawer_widget.dart';
-import 'package:eshop/src/pages/shared/views/custom_lable_widget.dart';
-import 'package:eshop/src/pages/shared/views/custom_padding_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../eshop.dart';
+import '../../../infrastructures/utils/eshop_utils.dart';
+import '../../shared/views/custom_drawer_widget.dart';
+import '../../shared/views/custom_lable_widget.dart';
+import '../../shared/views/custom_padding_widget.dart';
 import '../controllers/controller_edit_profile.dart';
 
 class EditProfilePage extends GetView<ControllerEditProfile> {
@@ -14,7 +14,13 @@ class EditProfilePage extends GetView<ControllerEditProfile> {
   @override
   Widget build(final BuildContext context) => Scaffold(
         appBar: AppBar(
-            title: Text(LocaleKeys.eshop_edit_profile_page_edit_profile.tr)),
+          title: Text(LocaleKeys.eshop_edit_profile_page_edit_profile.tr),
+          actions: [
+            IconButton(
+                onPressed: Get.back,
+                icon: const Icon(Icons.arrow_forward_outlined))
+          ],
+        ),
         drawer: const CustomDrawerWidget(),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(EShopUtils.allPagePadding()),
@@ -81,15 +87,20 @@ class EditProfilePage extends GetView<ControllerEditProfile> {
             },
             child: Column(
               children: [
-                Obx(() => Container(
-                    padding: EdgeInsets.only(bottom: EShopUtils.largePadding()),
-                    height: 100,
-                    width: 100,
-                    child: controller.localPic.value
-                        ? Image.asset('lib/assets/icons/profile.png',
-                            package: 'eshop')
-                        : Image.memory(controller.imageBytes))),
-                Text(LocaleKeys.eshop_shared_select_picture.tr)
+                Obx(() => ClipOval(
+                      child: Container(
+                          height: 100,
+                          width: 100,
+                          child: controller.localPic.value
+                              ? Image.asset('lib/assets/icons/profile.png',
+                                  package: 'eshop', fit: BoxFit.cover)
+                              : Image.memory(controller.imageBytes,
+                                  fit: BoxFit.cover)),
+                    )),
+                Padding(
+                  padding: EdgeInsets.only(top: EShopUtils.largePadding()),
+                  child: Text(LocaleKeys.eshop_shared_select_picture.tr),
+                )
               ],
             ),
           ),

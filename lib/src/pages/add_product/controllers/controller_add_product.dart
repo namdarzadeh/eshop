@@ -20,6 +20,7 @@ class ControllerAddProduct extends GetxController {
   final RepositoriesAddProduct _repository = RepositoriesAddProduct();
   String img64 = '';
   RxList<TagViewModel> tags = <TagViewModel>[].obs;
+  List<String> localTagsList = <String>[];
   RxString localTags = ''.obs;
   RxBool localPic = true.obs;
   late Uint8List imageBytes;
@@ -35,22 +36,30 @@ class ControllerAddProduct extends GetxController {
         pic: img64,
         details: controllerDetails.text,
         tag: localTags.value);
-    final int? _result = await _repository.addProduct(productDto);
-    if (_result == 0) {
+    final _result = await _repository.addProduct(productDto);
+    _result.fold((final l) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content:
               Text(LocaleKeys.eshop_business_exception_add_product_error.tr)));
-    } else {
+    }, (final r) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content: Text(
               LocaleKeys.eshop_business_exception_add_product_successful.tr)));
       Get.back(result: 1);
-    }
+    });
   }
 
-  Future<int> _getTags() async {
-    tags.value = await _repository.getTags();
-    return 1;
+  Future<void> _getTags() async {
+    final _result = await _repository.getTags();
+    _result.fold((final l) {}, (final r) {
+      tags.value = r;
+    });
+  }
+
+  void _creatLocalTagsList() {
+    tags.forEach((final element) {
+      localTagsList.add(element.name);
+    });
   }
 
   int checkTag() {
@@ -64,11 +73,11 @@ class ControllerAddProduct extends GetxController {
   }
 
   Future<void> _addtag(final String tag) async {
-    final int? _result = await _repository.addTag(tag);
-    if (_result == 0) {
+    final _result = await _repository.addTag(tag);
+    _result.fold((final l) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content: Text(LocaleKeys.eshop_business_exception_add_tag_error.tr)));
-    }
+    }, (final r) {});
   }
 
   Future<void> addTagClick() async {
@@ -82,7 +91,7 @@ class ControllerAddProduct extends GetxController {
       if (_result == 0) {
         await _addtag(controllerTag.text);
       }
-      localTags.value = '$localTags #${controllerTag.text}';
+      localTags.value = '$localTags ${controllerTag.text}';
     }
   }
 
@@ -111,5 +120,12 @@ class ControllerAddProduct extends GetxController {
     img64 = await imageToBase64(_image);
     localPic.value = true;
     localPic.value = false;
+  }
+
+  @override
+  void onInit() async {
+    await _getTags();
+    _creatLocalTagsList();
+    super.onInit();
   }
 }

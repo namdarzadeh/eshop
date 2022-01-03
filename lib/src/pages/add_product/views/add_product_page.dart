@@ -1,3 +1,4 @@
+import 'package:eshop/src/pages/shared/views/custom_autocomplete_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -60,17 +61,9 @@ class AddProductPage extends GetView<ControllerAddProduct> {
               ),
               Row(
                 children: [
-                  Container(
-                    padding: EdgeInsets.all(EShopUtils.lableWidgetPadding()),
-                    width: 300,
-                    child: TextField(
+                  CustomAutocompleteWidget(
                       controller: controller.controllerTag,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: LocaleKeys.eshop_shared_tag.tr,
-                      ),
-                    ),
-                  ),
+                      tags: controller.localTagsList),
                   ElevatedButton(
                     onPressed: () {
                       controller.addTagClick();
@@ -119,15 +112,20 @@ class AddProductPage extends GetView<ControllerAddProduct> {
             },
             child: Column(
               children: [
-                Obx(() => Container(
-                    padding: EdgeInsets.only(bottom: EShopUtils.largePadding()),
-                    height: 100,
-                    width: 100,
-                    child: controller.localPic.value
-                        ? Image.asset('lib/assets/icons/product.png',
-                            package: 'eshop')
-                        : Image.memory(controller.imageBytes))),
-                Text(LocaleKeys.eshop_shared_select_picture.tr)
+                Obx(() => ClipOval(
+                      child: Container(
+                          height: 100,
+                          width: 100,
+                          child: controller.localPic.value
+                              ? Image.asset('lib/assets/icons/product.png',
+                                  package: 'eshop', fit: BoxFit.cover)
+                              : Image.memory(controller.imageBytes,
+                                  fit: BoxFit.cover)),
+                    )),
+                Padding(
+                  padding: EdgeInsets.only(top: EShopUtils.largePadding()),
+                  child: Text(LocaleKeys.eshop_shared_select_picture.tr),
+                )
               ],
             ),
           ),

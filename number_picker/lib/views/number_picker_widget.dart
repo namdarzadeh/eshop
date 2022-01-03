@@ -5,10 +5,12 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 class NumberPickerWidget extends StatelessWidget {
   final void Function(int i) sendNumber;
   RxInt number = 0.obs;
+  double size = 0;
 
   NumberPickerWidget({
     required this.sendNumber,
     required this.number,
+    required this.size,
     final Key? key,
   }) : super(key: key);
 
@@ -20,6 +22,9 @@ class NumberPickerWidget extends StatelessWidget {
         child: Row(
           children: [
             IconButton(
+              iconSize: 15,
+              padding: EdgeInsets.all(size),
+              constraints: BoxConstraints(),
               icon: const Icon(Icons.add),
               onPressed: () {
                 sendNumber(++number.value);
@@ -27,6 +32,9 @@ class NumberPickerWidget extends StatelessWidget {
             ),
             Obx(() => Text(number.toString())),
             IconButton(
+              iconSize: 15,
+              padding: EdgeInsets.all(size),
+              constraints: BoxConstraints(),
               icon: const Icon(Icons.remove),
               onPressed: () {
                 if (number.value != 0) {

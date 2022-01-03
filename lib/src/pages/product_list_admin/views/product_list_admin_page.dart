@@ -112,14 +112,18 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          Container(
-                              height: 100,
-                              width: 100,
-                              child: Image.memory(
-                                  controller.base64ToByte(product.pic))),
+                          ClipOval(
+                            child: Container(
+                                height: 100,
+                                width: 100,
+                                child: Image.memory(
+                                    controller.base64ToByte(product.pic),
+                                    fit: BoxFit.cover)),
+                          ),
                           Column(children: [
                             Padding(
                               padding:
@@ -133,7 +137,7 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                                   EdgeInsets.all(EShopUtils.smallPadding()),
                               child: Row(
                                 children: [
-                                  Text(product.price.toString()),
+                                  Text('${product.price.toString()} '),
                                   Text(LocaleKeys.eshop_shared_toman.tr)
                                 ],
                               ),
@@ -145,7 +149,7 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                         padding: EdgeInsets.all(EShopUtils.smallPadding()),
                         child: Row(
                           children: [
-                            Text(LocaleKeys.eshop_shared_details.tr),
+                            Text('${LocaleKeys.eshop_shared_details.tr} : '),
                             Text(product.details)
                           ],
                         ),
@@ -154,7 +158,7 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                         padding: EdgeInsets.all(EShopUtils.smallPadding()),
                         child: Row(
                           children: [
-                            Text(LocaleKeys.eshop_shared_tag.tr),
+                            Text('${LocaleKeys.eshop_shared_tag.tr} : '),
                             Text(product.tag)
                           ],
                         ),
@@ -165,12 +169,16 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                     children: [
                       Row(
                         children: [
-                          Text(LocaleKeys.eshop_shared_deactive.tr),
+                          Text(LocaleKeys.eshop_shared_deactive.tr,
+                              style: TextStyle(
+                                  fontSize: EShopUtils.smallTextSize())),
                           CustomSwitchWidget(
                               sendCheckboxState: (final i) =>
                                   controller.editProduct(i, product),
                               isSwitched: product.isactive == 1 ? true : false),
-                          Text(LocaleKeys.eshop_shared_active.tr)
+                          Text(LocaleKeys.eshop_shared_active.tr,
+                              style: TextStyle(
+                                  fontSize: EShopUtils.smallTextSize()))
                         ],
                       ),
                       Visibility(
@@ -178,7 +186,7 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                         child: CustomPaddingWidget(
                           widget: Row(
                             children: [
-                              Text(LocaleKeys.eshop_shared_instock.tr),
+                              Text('${LocaleKeys.eshop_shared_instock.tr} : '),
                               Text(product.instock.toString())
                             ],
                           ),
@@ -211,7 +219,7 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                           ),
                           Container(
                             padding: EdgeInsets.all(EShopUtils.smallPadding()),
-                            width: 60,
+                            width: 70,
                             height: 35,
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(

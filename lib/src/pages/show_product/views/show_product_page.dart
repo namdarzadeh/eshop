@@ -13,8 +13,17 @@ class ShowProductPage extends GetView<ControllerShowProduct> {
   @override
   Widget build(final BuildContext context) => Scaffold(
         appBar: AppBar(
-            title: Obx(() => Text(
-                '${LocaleKeys.eshop_shared_id.tr} ${controller.product.value.id}'))),
+          title: Obx(() => Text(
+              '${LocaleKeys.eshop_shared_id.tr} ${controller.product.value.id}')),
+          actions: [
+            IconButton(
+                onPressed: () => controller.cartClick(),
+                icon: const Icon(Icons.shopping_cart_rounded)),
+            IconButton(
+                onPressed: Get.back,
+                icon: const Icon(Icons.arrow_forward_outlined)),
+          ],
+        ),
         drawer: const CustomDrawerWidget(),
         body: SingleChildScrollView(
           padding: EdgeInsets.all(EShopUtils.allPagePadding()),
@@ -27,110 +36,114 @@ class ShowProductPage extends GetView<ControllerShowProduct> {
                     shadowColor: Colors.blue[700],
                     child: Padding(
                       padding: EdgeInsets.all(EShopUtils.largePadding()),
-                      child: InkWell(
-                        onTap: () {},
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                        padding: EdgeInsets.fromLTRB(0, 0,
-                                            EShopUtils.largelistPadding(), 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  ClipOval(
+                                    child: Container(
                                         height: 100,
                                         width: 100,
                                         child: controller.localPic.value
                                             ? Image.asset(
                                                 'lib/assets/icons/product.png',
-                                                package: 'eshop')
+                                                package: 'eshop',
+                                                fit: BoxFit.cover)
                                             : Image.memory(
-                                                controller.imageBytes)),
-                                    Column(children: [
-                                      Padding(
-                                        padding: EdgeInsets.all(
-                                            EShopUtils.smallPadding()),
-                                        child: Text(
-                                            controller.product.value.name,
-                                            style: TextStyle(
-                                                fontSize: EShopUtils
-                                                    .largeTextSize())),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(
-                                            EShopUtils.smallPadding()),
-                                        child: Row(
-                                          children: [
-                                            Text(controller.product.value.price
-                                                .toString()),
-                                            Text(LocaleKeys
-                                                .eshop_shared_toman.tr)
-                                          ],
-                                        ),
-                                      )
-                                    ])
-                                  ],
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.all(EShopUtils.smallPadding()),
-                                  child: Row(
-                                    children: [
-                                      Text(LocaleKeys.eshop_shared_details.tr),
-                                      Text(controller.product.value.details)
-                                    ],
+                                                controller.imageBytes,
+                                                fit: BoxFit.cover)),
                                   ),
-                                ),
-                                Padding(
-                                  padding:
-                                      EdgeInsets.all(EShopUtils.smallPadding()),
-                                  child: Row(
-                                    children: [
-                                      Text(LocaleKeys.eshop_shared_tag.tr),
-                                      Text(controller.product.value.tag)
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Card(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(
-                                        EShopUtils.largePadding()),
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: Column(
+                                  Column(children: [
+                                    Padding(
+                                      padding: EdgeInsets.all(
+                                          EShopUtils.smallPadding()),
+                                      child: Text(
+                                          '  ${controller.product.value.name}',
+                                          style: TextStyle(
+                                              fontSize:
+                                                  EShopUtils.largeTextSize())),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(
+                                          EShopUtils.smallPadding()),
+                                      child: Row(
                                         children: [
-                                          Container(
-                                              padding: EdgeInsets.only(
-                                                  bottom: EShopUtils
-                                                      .largePadding()),
-                                              height: 30,
-                                              width: 30,
-                                              child: Image.asset(
-                                                  'lib/assets/icons/icfav.png',
-                                                  package: 'eshop')),
                                           Text(
-                                              LocaleKeys
-                                                  .eshop_shared_favorit.tr,
-                                              style: TextStyle(
-                                                  fontSize: EShopUtils
-                                                      .smallTextSize()))
+                                              '  ${controller.product.value.price} '
+                                                  .toString()),
+                                          Text(LocaleKeys.eshop_shared_toman.tr)
                                         ],
                                       ),
+                                    )
+                                  ])
+                                ],
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.all(EShopUtils.smallPadding()),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                        '${LocaleKeys.eshop_shared_details.tr} : '),
+                                    Text(controller.product.value.details)
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    EdgeInsets.all(EShopUtils.smallPadding()),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                        '${LocaleKeys.eshop_shared_tag.tr} : '),
+                                    Text(controller.product.value.tag)
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Card(
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.all(EShopUtils.largePadding()),
+                                  child: InkWell(
+                                    onTap: () {},
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                            padding: EdgeInsets.only(
+                                                bottom:
+                                                    EShopUtils.largePadding()),
+                                            height: 50,
+                                            width: 50,
+                                            child: const Icon(Icons.favorite)),
+                                        Text(LocaleKeys.eshop_shared_favorit.tr,
+                                            style: TextStyle(
+                                                fontSize:
+                                                    EShopUtils.smallTextSize()))
+                                      ],
                                     ),
                                   ),
                                 ),
-                                NumberPickerWidget(
-                                    sendNumber: (final i) => print(i),
-                                    number: controller.number)
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                              NumberPickerWidget(
+                                  sendNumber: (final i) {
+                                    controller.number.value = i;
+                                    controller.updateCart(
+                                        controller.product.value,
+                                        controller.number.value);
+                                  },
+                                  number: controller.number,
+                                  size: EShopUtils.largePadding())
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   )),
