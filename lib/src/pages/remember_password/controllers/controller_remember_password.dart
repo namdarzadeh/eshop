@@ -1,11 +1,10 @@
-import 'package:eshop/src/pages/remember_password/repositories/repositories_remember_password.dart';
-import 'package:eshop/src/pages/shared/models/person_dto.dart';
-import 'package:eshop/src/pages/shared/models/person_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../eshop.dart';
+import '../../shared/models/person_dto.dart';
+import '../../shared/models/person_view_model.dart';
+import '../repositories/repositories_remember_password.dart';
 
 class ControllerRememberPassword extends GetxController {
   final TextEditingController controllerUsername = TextEditingController();
@@ -21,7 +20,10 @@ class ControllerRememberPassword extends GetxController {
   RxBool passwordFieldVsible = false.obs;
 
   Future<void> _getPersons() async {
-    persons = await _repository.getPersons();
+    final _result = await _repository.getPersons();
+    _result.fold((final l) {}, (final r) {
+      persons = r;
+    });
   }
 
   int checkUser() {
@@ -64,13 +66,17 @@ class ControllerRememberPassword extends GetxController {
                 Text(LocaleKeys.eshop_business_exception_password_verify.tr)));
       } else {
         person.password = controllerPassword.text;
-        final int _resultt = await _repository.editPerson(personId, person);
-        if (_resultt == 1) {
+        final _resultt = await _repository.editPerson(personId, person);
+        _resultt.fold((final l) {
+          ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
+              content: Text(LocaleKeys
+                  .eshop_business_exception_change_password_error.tr)));
+        }, (final r) {
           ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
               content: Text(LocaleKeys
                   .eshop_business_exception_change_password_successful.tr)));
           Get.back();
-        }
+        });
       }
     }
   }

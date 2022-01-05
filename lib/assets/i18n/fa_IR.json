@@ -18,7 +18,14 @@
       "edit_product_error": "ویرایش کالا با خطا مواجه شد",
       "edit_product_successful": "ویرایش کالا با موفقیت انجام شد",
       "user_not_found": "کاربر پیدا نشد",
-      "change_password_successful": "تغییر پسورد انجام شد"
+      "change_password_successful": "تغییر پسورد انجام شد",
+      "edit_profile_error": "ویرایش پروفایل با خطا مواجه شد",
+      "edit_profile_successful": "ویرایش پروفایل با موفقیت انجام شد",
+      "change_password_error": "تغییر پسورد با خطا مواجه شد",
+      "create_admin_successful": "یوزر ادمین با موفقیت ساخته شد",
+      "maximum_unit_added": "حداکثر تعداد مجاز انتخاب شده است",
+      "submit_order_successful": "سفارش با موفقیت ثبت شد",
+      "delete_order_successful": "سبد خرید با موفقیت خالی شد"
     },
     "shared": {
       "edit": "ویرایش",
@@ -70,7 +77,12 @@
       "mobile": "موبایل",
       "change_language": "تغییر زبان",
       "filter_done": "اعمال فیلتر",
-      "price": "قیمت"
+      "price": "قیمت",
+      "users_list": "لیست کاربران",
+      "admin": "مدیریت",
+      "favorit_list": "لیست علاقه مندی ها",
+      "instock_status": "موجود",
+      "only_product_from_5": "فقط کالاهای با موجودی بالای 5 عدد"
     },
     "login_page": {
       "singup_later": "--- قبلا ثبت نام کرده اید ---",
@@ -100,7 +112,8 @@
       "total_price": "قیمت مجموع",
       "number": "تعداد",
       "number_product_per": "قلم کالا با",
-      "submit_order": "ثبت سفارش"
+      "submit_order": "ثبت سفارش",
+      "delete_order_list": "حذف سبد"
     },
     "edit_profile_page": {
       "edit_profile": "ویرایش پروفایل"

@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../../../infrastructures/commons/repository_urls.dart';
@@ -6,7 +7,7 @@ import '../../shared/models/product_view_model.dart';
 import '../../shared/models/tag_view_model.dart';
 
 class RepositoriesEditProduct {
-  Future<ProductViewModel> getProduct(final int id) async {
+  Future<Either<int?, ProductViewModel>> getProduct(final int id) async {
     ProductViewModel product = ProductViewModel(
         id: 0,
         isactive: 0,
@@ -20,44 +21,43 @@ class RepositoriesEditProduct {
       final Map<String, dynamic> _json = await RepositoryUrls.dioGet(
           '${RepositoryUrls.fullBaseUrl}/product/$id');
       product = ProductViewModel.fromJson(_json);
-      return product;
+      return Right(product);
     } on DioError catch (e) {
-      return product;
+      return Left(e.response?.statusCode);
     }
   }
 
-  Future<int?> editProduct(final int id, final ProductDto productDto) async {
+  Future<Either<int?, int>> editProduct(
+      final int id, final ProductDto productDto) async {
     try {
-      final _json = await RepositoryUrls.dioPut(
-          '${RepositoryUrls.fullBaseUrl}/product',
-          id,
+      await RepositoryUrls.dioPut('${RepositoryUrls.fullBaseUrl}/product', id,
           ProductDto.toJson(productDto));
-      return 1;
+      return const Right(1);
     } on DioError catch (e) {
-      return 0;
+      return Left(e.response?.statusCode);
     }
   }
 
-  Future<List<TagViewModel>> getTags() async {
+  Future<Either<int?, List<TagViewModel>>> getTags() async {
     List<TagViewModel> tags = <TagViewModel>[];
     try {
       final List<dynamic> _json =
           await RepositoryUrls.dioGet('${RepositoryUrls.fullBaseUrl}/tags');
       tags = _json.map((final e) => TagViewModel.fromJson(e)).toList();
-      return tags;
+      return Right(tags);
     } on DioError catch (e) {
-      return tags;
+      return Left(e.response?.statusCode);
     }
   }
 
-  Future<int?> addTag(final String tag) async {
+  Future<Either<int?, int>> addTag(final String tag) async {
     final Map<String, dynamic> map = {'name': tag};
     try {
       final Map<String, dynamic> _json = await RepositoryUrls.dioPost(
           '${RepositoryUrls.fullBaseUrl}/tags', map);
-      return _json['id'];
+      return Right(_json['id']);
     } on DioError catch (e) {
-      return e.response?.statusCode;
+      return Left(e.response?.statusCode);
     }
   }
 }

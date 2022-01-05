@@ -5,7 +5,7 @@ import '../../../infrastructures/commons/repository_urls.dart';
 import '../../shared/models/person_dto.dart';
 import '../../shared/models/person_view_model.dart';
 
-class RepositoriesRememberPassword {
+class RepositoriesUsersList {
   Future<Either<int?, List<PersonViewModel>>> getPersons() async {
     List<PersonViewModel> persons = <PersonViewModel>[];
     try {
@@ -22,6 +22,17 @@ class RepositoriesRememberPassword {
       final int id, final PersonDto personDto) async {
     try {
       await RepositoryUrls.dioPut('${RepositoryUrls.fullBaseUrl}/person', id,
+          PersonDto.toJson(personDto));
+      return const Right(1);
+    } on DioError catch (e) {
+      return Left(e.response?.statusCode);
+    }
+  }
+
+  Future<Either<int?, int>> editSetting(
+      final int id, final PersonDto personDto) async {
+    try {
+      await RepositoryUrls.dioPut('${RepositoryUrls.fullBaseUrl}/setting', id,
           PersonDto.toJson(personDto));
       return const Right(1);
     } on DioError catch (e) {

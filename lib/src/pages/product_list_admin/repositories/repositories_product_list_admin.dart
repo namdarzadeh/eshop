@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../../../infrastructures/commons/repository_urls.dart';
@@ -5,37 +6,36 @@ import '../../shared/models/product_dto.dart';
 import '../../shared/models/product_view_model.dart';
 
 class RepositoriesProductListAdmin {
-  Future<List<ProductViewModel>> getProducts() async {
+  Future<Either<int?, List<ProductViewModel>>> getProducts() async {
     List<ProductViewModel> products = <ProductViewModel>[];
     try {
       final List<dynamic> _json =
           await RepositoryUrls.dioGet('${RepositoryUrls.fullBaseUrl}/product');
       products = _json.map((final e) => ProductViewModel.fromJson(e)).toList();
-      return products;
+      return Right(products);
     } on DioError catch (e) {
-      return products;
+      return Left(e.response?.statusCode);
     }
   }
 
-  Future<int> putProduct(final int id, final ProductDto productDto) async {
+  Future<Either<int?, int>> putProduct(
+      final int id, final ProductDto productDto) async {
     try {
-      final _json = await RepositoryUrls.dioPut(
-          '${RepositoryUrls.fullBaseUrl}/product',
-          id,
+      await RepositoryUrls.dioPut('${RepositoryUrls.fullBaseUrl}/product', id,
           ProductDto.toJson(productDto));
-      return 1;
+      return const Right(1);
     } on DioError catch (e) {
-      return 0;
+      return Left(e.response?.statusCode);
     }
   }
 
-  Future<int> deleteProduct(final int id) async {
+  Future<Either<int?, int>> deleteProduct(final int id) async {
     try {
-      final _json = await RepositoryUrls.dioDelete(
+      await RepositoryUrls.dioDelete(
           '${RepositoryUrls.fullBaseUrl}/product', id);
-      return 1;
+      return const Right(1);
     } on DioError catch (e) {
-      return 0;
+      return Left(e.response?.statusCode);
     }
   }
 }

@@ -2,14 +2,13 @@ import 'dart:convert';
 import 'dart:io' as io;
 import 'dart:typed_data';
 
-import 'package:eshop/src/pages/shared/models/person_view_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../eshop.dart';
 import '../../shared/models/person_dto.dart';
+import '../../shared/models/person_view_model.dart';
 import '../repositories/repositories_edit_profile.dart';
 
 class ControllerEditProfile extends GetxController {
@@ -38,19 +37,21 @@ class ControllerEditProfile extends GetxController {
         favorite: EShopParameters.localPersonViewModel.favorite,
         mobile: controllerMobile.text,
         pic: img64);
-    final int? _result = await _repository.editPerson(
+    final _result = await _repository.editPerson(
         EShopParameters.localPersonViewModel.id, person);
-    if (_result == 0) {
+    await _repository.editSetting(
+        EShopParameters.localPersonViewModel.id, person);
+    _result.fold((final l) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content:
-              Text(LocaleKeys.eshop_business_exception_edit_product_error.tr)));
-    } else {
+              Text(LocaleKeys.eshop_business_exception_edit_profile_error.tr)));
+    }, (final r) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content: Text(
-              LocaleKeys.eshop_business_exception_edit_product_successful.tr)));
+              LocaleKeys.eshop_business_exception_edit_profile_successful.tr)));
       setLocalPerson();
       Get.back();
-    }
+    });
   }
 
   Future<void> editProfileClick() async {

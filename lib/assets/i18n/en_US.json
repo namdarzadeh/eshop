@@ -18,7 +18,14 @@
       "edit_product_error": "edit product error",
       "edit_product_successful": "edit product successful",
       "user_not_found": "user not found",
-      "change_password_successful": "change password successful"
+      "change_password_successful": "change password successful",
+      "edit_profile_error": "edit profile error",
+      "edit_profile_successful": "edit profile successful",
+      "change_password_error": "change password error",
+      "create_admin_successful": "create admin successful",
+      "maximum_unit_added": "maximum unit added",
+      "submit_order_successful": "submit order successful",
+      "delete_order_successful": "delete order successful"
     },
     "shared": {
       "edit": "edit",
@@ -70,7 +77,12 @@
       "mobile": "mobile",
       "change_language": "change language",
       "filter_done": "filter done",
-      "price": "price"
+      "price": "price",
+      "users_list": "users list",
+      "admin": "adm",
+      "favorit_list": "favorit list",
+      "instock_status": "instock",
+      "only_product_from_5": "only product from 5"
     },
     "login_page": {
       "singup_later": "--- You have already registered ---",
@@ -100,7 +112,8 @@
       "total_price": "total price",
       "number": "number",
       "number_product_per": "number product per",
-      "submit_order": "submit order"
+      "submit_order": "submit order",
+      "delete_order_list": "delete cart"
     },
     "edit_profile_page": {
       "edit_profile": "edit profile"

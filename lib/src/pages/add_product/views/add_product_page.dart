@@ -1,11 +1,12 @@
-import 'package:eshop/src/pages/shared/views/custom_autocomplete_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../eshop.dart';
 import '../../../infrastructures/utils/eshop_utils.dart';
+import '../../shared/views/custom_autocomplete_widget.dart';
 import '../../shared/views/custom_drawer_widget.dart';
 import '../../shared/views/custom_lable_widget.dart';
+import '../../shared/views/custom_number_lable_widget.dart';
 import '../../shared/views/custom_padding_widget.dart';
 import '../../shared/views/custom_switch_widget.dart';
 import '../controllers/controller_add_product.dart';
@@ -27,10 +28,10 @@ class AddProductPage extends GetView<ControllerAddProduct> {
               CustomLableWidget(
                   controller: controller.controllerName,
                   title: LocaleKeys.eshop_shared_name.tr),
-              CustomLableWidget(
+              CustomNumberLableWidget(
                   controller: controller.controllerPrice,
                   title: LocaleKeys.eshop_shared_product_price.tr),
-              CustomLableWidget(
+              CustomNumberLableWidget(
                   controller: controller.controllerInstock,
                   title: LocaleKeys.eshop_shared_instock.tr),
               CustomLableWidget(

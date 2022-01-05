@@ -47,6 +47,20 @@ class LocaleKeys {
       'eshop_business_exception_user_not_found';
   static const eshop_business_exception_change_password_successful =
       'eshop_business_exception_change_password_successful';
+  static const eshop_business_exception_edit_profile_error =
+      'eshop_business_exception_edit_profile_error';
+  static const eshop_business_exception_edit_profile_successful =
+      'eshop_business_exception_edit_profile_successful';
+  static const eshop_business_exception_change_password_error =
+      'eshop_business_exception_change_password_error';
+  static const eshop_business_exception_create_admin_successful =
+      'eshop_business_exception_create_admin_successful';
+  static const eshop_business_exception_maximum_unit_added =
+      'eshop_business_exception_maximum_unit_added';
+  static const eshop_business_exception_submit_order_successful =
+      'eshop_business_exception_submit_order_successful';
+  static const eshop_business_exception_delete_order_successful =
+      'eshop_business_exception_delete_order_successful';
   static const eshop_shared_edit = 'eshop_shared_edit';
   static const eshop_shared_warning = 'eshop_shared_warning';
   static const eshop_shared_yes = 'eshop_shared_yes';
@@ -99,6 +113,12 @@ class LocaleKeys {
   static const eshop_shared_change_language = 'eshop_shared_change_language';
   static const eshop_shared_filter_done = 'eshop_shared_filter_done';
   static const eshop_shared_price = 'eshop_shared_price';
+  static const eshop_shared_users_list = 'eshop_shared_users_list';
+  static const eshop_shared_admin = 'eshop_shared_admin';
+  static const eshop_shared_favorit_list = 'eshop_shared_favorit_list';
+  static const eshop_shared_instock_status = 'eshop_shared_instock_status';
+  static const eshop_shared_only_product_from_5 =
+      'eshop_shared_only_product_from_5';
   static const eshop_login_page_singup_later = 'eshop_login_page_singup_later';
   static const eshop_login_page_new_register = 'eshop_login_page_new_register';
   static const eshop_login_page_login = 'eshop_login_page_login';
@@ -122,6 +142,8 @@ class LocaleKeys {
   static const eshop_cart_page_number_product_per =
       'eshop_cart_page_number_product_per';
   static const eshop_cart_page_submit_order = 'eshop_cart_page_submit_order';
+  static const eshop_cart_page_delete_order_list =
+      'eshop_cart_page_delete_order_list';
   static const eshop_edit_profile_page_edit_profile =
       'eshop_edit_profile_page_edit_profile';
 }
@@ -150,6 +172,17 @@ class Locales {
     'eshop_business_exception_user_not_found': 'user not found',
     'eshop_business_exception_change_password_successful':
         'change password successful',
+    'eshop_business_exception_edit_profile_error': 'edit profile error',
+    'eshop_business_exception_edit_profile_successful':
+        'edit profile successful',
+    'eshop_business_exception_change_password_error': 'change password error',
+    'eshop_business_exception_create_admin_successful':
+        'create admin successful',
+    'eshop_business_exception_maximum_unit_added': 'maximum unit added',
+    'eshop_business_exception_submit_order_successful':
+        'submit order successful',
+    'eshop_business_exception_delete_order_successful':
+        'delete order successful',
     'eshop_shared_edit': 'edit',
     'eshop_shared_warning': 'warning',
     'eshop_shared_yes': 'yes',
@@ -200,6 +233,11 @@ class Locales {
     'eshop_shared_change_language': 'change language',
     'eshop_shared_filter_done': 'filter done',
     'eshop_shared_price': 'price',
+    'eshop_shared_users_list': 'users list',
+    'eshop_shared_admin': 'adm',
+    'eshop_shared_favorit_list': 'favorit list',
+    'eshop_shared_instock_status': 'instock',
+    'eshop_shared_only_product_from_5': 'only product from 5',
     'eshop_login_page_singup_later': '--- You have already registered ---',
     'eshop_login_page_new_register': '--- You are a new user ---',
     'eshop_login_page_login': 'login',
@@ -216,6 +254,7 @@ class Locales {
     'eshop_cart_page_number': 'number',
     'eshop_cart_page_number_product_per': 'number product per',
     'eshop_cart_page_submit_order': 'submit order',
+    'eshop_cart_page_delete_order_list': 'delete cart',
     'eshop_edit_profile_page_edit_profile': 'edit profile',
   };
   static const fa_IR = {
@@ -246,6 +285,20 @@ class Locales {
     'eshop_business_exception_user_not_found': 'کاربر پیدا نشد',
     'eshop_business_exception_change_password_successful':
         'تغییر پسورد انجام شد',
+    'eshop_business_exception_edit_profile_error':
+        'ویرایش پروفایل با خطا مواجه شد',
+    'eshop_business_exception_edit_profile_successful':
+        'ویرایش پروفایل با موفقیت انجام شد',
+    'eshop_business_exception_change_password_error':
+        'تغییر پسورد با خطا مواجه شد',
+    'eshop_business_exception_create_admin_successful':
+        'یوزر ادمین با موفقیت ساخته شد',
+    'eshop_business_exception_maximum_unit_added':
+        'حداکثر تعداد مجاز انتخاب شده است',
+    'eshop_business_exception_submit_order_successful':
+        'سفارش با موفقیت ثبت شد',
+    'eshop_business_exception_delete_order_successful':
+        'سبد خرید با موفقیت خالی شد',
     'eshop_shared_edit': 'ویرایش',
     'eshop_shared_warning': 'هشدار',
     'eshop_shared_yes': 'بله',
@@ -296,6 +349,11 @@ class Locales {
     'eshop_shared_change_language': 'تغییر زبان',
     'eshop_shared_filter_done': 'اعمال فیلتر',
     'eshop_shared_price': 'قیمت',
+    'eshop_shared_users_list': 'لیست کاربران',
+    'eshop_shared_admin': 'مدیریت',
+    'eshop_shared_favorit_list': 'لیست علاقه مندی ها',
+    'eshop_shared_instock_status': 'موجود',
+    'eshop_shared_only_product_from_5': 'فقط کالاهای با موجودی بالای 5 عدد',
     'eshop_login_page_singup_later': '--- قبلا ثبت نام کرده اید ---',
     'eshop_login_page_new_register': '--- کاربر جدید هستید ---',
     'eshop_login_page_login': 'ورود',
@@ -312,6 +370,7 @@ class Locales {
     'eshop_cart_page_number': 'تعداد',
     'eshop_cart_page_number_product_per': 'قلم کالا با',
     'eshop_cart_page_submit_order': 'ثبت سفارش',
+    'eshop_cart_page_delete_order_list': 'حذف سبد',
     'eshop_edit_profile_page_edit_profile': 'ویرایش پروفایل',
   };
 }

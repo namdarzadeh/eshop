@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 import '../../../../eshop.dart';
+import '../../../infrastructures/commons/repository_urls.dart';
 import '../../../infrastructures/utils/eshop_utils.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
@@ -48,6 +51,12 @@ class CustomDrawerWidget extends StatelessWidget {
                 visible: EShopParameters.localPersonViewModel.isadmin == 0
                     ? true
                     : false,
+                child: drawerItem(LocaleKeys.eshop_shared_favorit_list.tr,
+                    EShopRouteNames.favoritList)),
+            Visibility(
+                visible: EShopParameters.localPersonViewModel.isadmin == 0
+                    ? true
+                    : false,
                 child: drawerItem(
                     LocaleKeys.eshop_cart_page_cart.tr, EShopRouteNames.cart)),
             Visibility(
@@ -65,6 +74,19 @@ class CustomDrawerWidget extends StatelessWidget {
                 child: drawerItem(
                     LocaleKeys.eshop_add_product_page_add_product.tr,
                     EShopRouteNames.addProduct)),
+            Visibility(
+                visible: EShopParameters.localPersonViewModel.isadmin == 1
+                    ? true
+                    : false,
+                child: drawerItem(LocaleKeys.eshop_shared_users_list.tr,
+                    EShopRouteNames.usersList)),
+            ListTile(
+              title: Text(LocaleKeys.eshop_shared_exit.tr),
+              onTap: () {
+                Get.back();
+                exitClick();
+              },
+            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(80, 100, 80, 0),
               child: ElevatedButton(
@@ -92,4 +114,22 @@ class CustomDrawerWidget extends StatelessWidget {
           Get.toNamed(routeName);
         },
       );
+
+  void exitClick() {
+    final RepositoriesDrawer _repository = RepositoriesDrawer();
+    _repository.deleteSetting(EShopParameters.localPersonViewModel.id);
+    Get.offNamed(EShopRouteNames.login);
+  }
+}
+
+class RepositoriesDrawer {
+  Future<Either<int?, int>> deleteSetting(final int id) async {
+    try {
+      await RepositoryUrls.dioDelete(
+          '${RepositoryUrls.fullBaseUrl}/setting', id);
+      return const Right(1);
+    } on DioError catch (e) {
+      return Left(e.response?.statusCode);
+    }
+  }
 }

@@ -1,7 +1,8 @@
-import 'package:eshop/src/pages/search/repositories/repositories_search.dart';
-import 'package:eshop/src/pages/shared/models/product_view_model.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../shared/models/product_view_model.dart';
+import '../repositories/repositories_search.dart';
 
 class ControllerSearch extends GetxController {
   final TextEditingController controllerSearch = TextEditingController();
@@ -10,7 +11,10 @@ class ControllerSearch extends GetxController {
   List<ProductViewModel> matchProducts = <ProductViewModel>[];
 
   Future<void> _getProducts() async {
-    products = await _repository.getProducts();
+    final _result = await _repository.getProducts();
+    _result.fold((final l) {}, (final r) {
+      products = r;
+    });
   }
 
   Future<void> checkInProduct() async {

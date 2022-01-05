@@ -25,15 +25,23 @@ class LoginPage extends GetView<ControllerLogin> {
                   title: LocaleKeys.eshop_shared_username.tr),
               Padding(
                   padding: EdgeInsets.all(EShopUtils.lableWidgetPadding()),
-                  child: TextField(
-                      obscureText: true,
+                  child: Obx(() => TextField(
+                      obscureText: controller.showPassword.value,
                       enableSuggestions: false,
                       autocorrect: false,
                       controller: controller.controllerPassword,
                       decoration: InputDecoration(
                         border: const OutlineInputBorder(),
                         labelText: LocaleKeys.eshop_shared_password.tr,
-                      ))),
+                        suffixIcon: IconButton(
+                            icon: Icon(controller.showPassword.value
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            onPressed: () {
+                              controller.showPassword.value =
+                                  !controller.showPassword.value;
+                            }),
+                      )))),
               CustomPaddingWidget(
                   widget: ElevatedButton(
                       onPressed: () {
@@ -45,7 +53,8 @@ class LoginPage extends GetView<ControllerLogin> {
                 onTap: () {
                   Get.toNamed(EShopRouteNames.rememberPassword);
                 },
-                child: Text(LocaleKeys.eshop_login_page_remember_password.tr),
+                child: Text(LocaleKeys.eshop_login_page_remember_password.tr,
+                    style: const TextStyle(color: Colors.blue)),
               )),
               CustomPaddingWidget(
                   widget: Text(LocaleKeys.eshop_login_page_new_register.tr)),

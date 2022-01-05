@@ -8,7 +8,7 @@ mixin EShopParameters {
   static List<GetPage> pages = EShopRoutePages.routes;
   static late PersonViewModel localPersonViewModel;
   static String defaultLanguage = 'fa';
-  static List filterResult = [0, 1000000000, false];
+  static List filterResult = [0, 1000000000, false, false];
   static RxBool filterMode = false.obs;
   static RxList<List<dynamic>> orders = <List<dynamic>>[].obs;
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:number_picker/views/number_picker_widget.dart';
@@ -111,11 +112,27 @@ class CartPage extends GetView<ControllerCart> {
                         ]),
                       ),
                     ),
-                    CustomPaddingWidget(
-                        widget: ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
-                                LocaleKeys.eshop_cart_page_submit_order.tr))),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomPaddingWidget(
+                            widget: ElevatedButton(
+                                onPressed: () {
+                                  controller.submitOrder();
+                                },
+                                child: Text(LocaleKeys
+                                    .eshop_cart_page_submit_order.tr))),
+                        CustomPaddingWidget(
+                            widget: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Colors.red),
+                                onPressed: () {
+                                  controller.deleteOrder();
+                                },
+                                child: Text(LocaleKeys
+                                    .eshop_cart_page_delete_order_list.tr))),
+                      ],
+                    ),
                   ]))),
         ),
       );
@@ -158,9 +175,19 @@ class CartPage extends GetView<ControllerCart> {
           ],
         ),
         NumberPickerWidget(
-            sendNumber: (final i) => controller.updateCart(product, i),
-            number: _number,
-            size: EShopUtils.mediumPadding()),
+          sendNumber: (final i) {
+            if (controller.checkInstock(product, i) == 1) {
+              _number.value = i;
+              controller.updateCart(product, _number.value);
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(LocaleKeys
+                      .eshop_business_exception_maximum_unit_added.tr)));
+            }
+          },
+          number: _number.value,
+          size: EShopUtils.mediumPadding(),
+        ),
         Row(
           children: [
             Padding(

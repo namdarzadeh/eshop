@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 import '../../../infrastructures/commons/repository_urls.dart';
@@ -5,19 +6,19 @@ import '../../shared/models/person_dto.dart';
 import '../../shared/models/person_view_model.dart';
 
 class RepositoriesSplashScreen {
-  Future<List<PersonViewModel>> getPerson() async {
-    List<PersonViewModel> person = <PersonViewModel>[];
+  Future<Either<int?, List<PersonViewModel>>> getPersons() async {
+    List<PersonViewModel> persons = <PersonViewModel>[];
     try {
       final List<dynamic> _json =
           await RepositoryUrls.dioGet('${RepositoryUrls.fullBaseUrl}/person');
-      person = _json.map((final e) => PersonViewModel.fromJson(e)).toList();
-      return person;
+      persons = _json.map((final e) => PersonViewModel.fromJson(e)).toList();
+      return Right(persons);
     } on DioError catch (e) {
-      return person;
+      return Left(e.response?.statusCode);
     }
   }
 
-  Future<int?> setupAdmin() async {
+  Future<Either<int?, int>> setupAdmin() async {
     final map = PersonDto.toJson(PersonDto(
         isadmin: 1,
         username: 'admin',
@@ -32,9 +33,21 @@ class RepositoriesSplashScreen {
     try {
       final Map<String, dynamic> _json = await RepositoryUrls.dioPost(
           '${RepositoryUrls.fullBaseUrl}/person', map);
-      return _json['id'];
+      return Right(_json['id']);
     } on DioError catch (e) {
-      return e.response?.statusCode;
+      return Left(e.response?.statusCode);
+    }
+  }
+
+  Future<Either<int?, List<PersonViewModel>>> getSetting() async {
+    List<PersonViewModel> setting = <PersonViewModel>[];
+    try {
+      final List<dynamic> _json =
+          await RepositoryUrls.dioGet('${RepositoryUrls.fullBaseUrl}/setting');
+      setting = _json.map((final e) => PersonViewModel.fromJson(e)).toList();
+      return Right(setting);
+    } on DioError catch (e) {
+      return Left(e.response?.statusCode);
     }
   }
 }

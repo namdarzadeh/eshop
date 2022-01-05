@@ -1,4 +1,3 @@
-import 'package:eshop/src/pages/shared/views/custom_filter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,6 +5,7 @@ import '../../../../eshop.dart';
 import '../../../infrastructures/utils/eshop_utils.dart';
 import '../../shared/models/product_view_model.dart';
 import '../../shared/views/custom_drawer_widget.dart';
+import '../../shared/views/custom_filter_widget.dart';
 import '../../shared/views/custom_padding_widget.dart';
 import '../../shared/views/custom_switch_widget.dart';
 import '../controllers/controller_product_list_admin.dart';
@@ -80,7 +80,11 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
       if (EShopParameters.filterMode.value) {
         if (i.price >= EShopParameters.filterResult[0] &&
             i.price <= EShopParameters.filterResult[1]) {
-          if (EShopParameters.filterResult[2] == true) {
+          if (EShopParameters.filterResult[3] == true) {
+            if (i.instock > 5) {
+              products.add(buildCard(i, context));
+            }
+          } else if (EShopParameters.filterResult[2] == true) {
             if (i.instock > 0) {
               products.add(buildCard(i, context));
             }
@@ -128,7 +132,10 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                             Padding(
                               padding:
                                   EdgeInsets.all(EShopUtils.smallPadding()),
-                              child: Text(product.name,
+                              child: Text(
+                                  product.name.length > 5
+                                      ? '  ${product.name.substring(0, 5)}..'
+                                      : '  ${product.name}',
                                   style: TextStyle(
                                       fontSize: EShopUtils.largeTextSize())),
                             ),
@@ -150,7 +157,9 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                         child: Row(
                           children: [
                             Text('${LocaleKeys.eshop_shared_details.tr} : '),
-                            Text(product.details)
+                            Text(product.details.length > 15
+                                ? '${product.details.substring(0, 15)} ...'
+                                : product.details)
                           ],
                         ),
                       ),
@@ -159,7 +168,9 @@ class ProductListAdminPage extends GetView<ControllerProductListAdmin> {
                         child: Row(
                           children: [
                             Text('${LocaleKeys.eshop_shared_tag.tr} : '),
-                            Text(product.tag)
+                            Text(product.tag.length > 15
+                                ? '${product.tag.substring(0, 15)} ...'
+                                : product.tag)
                           ],
                         ),
                       ),

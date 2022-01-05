@@ -1,6 +1,3 @@
-import 'package:eshop/src/infrastructures/utils/eshop_utils.dart';
-import 'package:eshop/src/pages/shared/views/custom_padding_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -10,12 +7,15 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 import '../../../../eshop.dart';
+import '../../../infrastructures/utils/eshop_utils.dart';
+import 'custom_padding_widget.dart';
 import 'custom_switch_widget.dart';
 
 class CustomFilterWidget extends StatelessWidget {
   TextEditingController controllerFrom = TextEditingController();
   TextEditingController controllerUntil = TextEditingController();
-  RxBool isSwitched = false.obs;
+  RxBool isSwitchedInStock = false.obs;
+  RxBool isSwitchedInStockValue = false.obs;
   CustomFilterWidget({
     final Key? key,
   }) : super(key: key);
@@ -75,9 +75,23 @@ class CustomFilterWidget extends StatelessWidget {
               Text(LocaleKeys.eshop_shared_only_available_product.tr),
               Obx(() => CustomSwitchWidget(
                   sendCheckboxState: (final i) {
-                    isSwitched.value = i;
+                    isSwitchedInStock.value = i;
                   },
-                  isSwitched: isSwitched.value)),
+                  isSwitched: isSwitchedInStock.value)),
+            ]),
+            CustomPaddingWidget(
+              widget: Container(
+                color: Colors.black,
+                height: 1,
+              ),
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              Text(LocaleKeys.eshop_shared_only_product_from_5.tr),
+              Obx(() => CustomSwitchWidget(
+                  sendCheckboxState: (final i) {
+                    isSwitchedInStockValue.value = i;
+                  },
+                  isSwitched: isSwitchedInStockValue.value)),
             ]),
             Padding(
               padding: const EdgeInsets.fromLTRB(80, 100, 80, 0),
@@ -87,7 +101,8 @@ class CustomFilterWidget extends StatelessWidget {
                         int.tryParse(controllerFrom.text) ?? 0;
                     EShopParameters.filterResult[1] =
                         int.tryParse(controllerUntil.text) ?? 1000000000;
-                    EShopParameters.filterResult[2] = isSwitched;
+                    EShopParameters.filterResult[2] = isSwitchedInStock;
+                    EShopParameters.filterResult[3] = isSwitchedInStockValue;
                     EShopParameters.filterMode.value = true;
                     Get.back();
                   },

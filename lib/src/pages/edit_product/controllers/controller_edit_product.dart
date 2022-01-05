@@ -37,7 +37,14 @@ class ControllerEditProduct extends GetxController {
   String img64 = '';
 
   Future<int> _getProduct(final int id) async {
-    product = await _repository.getProduct(id);
+    final _result = await _repository.getProduct(id);
+    _result.fold((final l) {
+      ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
+          content:
+              Text(LocaleKeys.eshop_business_exception_http_error_400.tr)));
+    }, (final r) {
+      product = r;
+    });
     return 1;
   }
 
@@ -65,21 +72,24 @@ class ControllerEditProduct extends GetxController {
         pic: img64,
         details: controllerDetails.text,
         tag: localTags.value);
-    final int? _result = await _repository.editProduct(product.id, productDto);
-    if (_result == 0) {
+    final _result = await _repository.editProduct(product.id, productDto);
+    _result.fold((final l) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content:
               Text(LocaleKeys.eshop_business_exception_edit_product_error.tr)));
-    } else {
+    }, (final r) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content: Text(
               LocaleKeys.eshop_business_exception_edit_product_successful.tr)));
       Get.back(result: 1);
-    }
+    });
   }
 
   Future<int> _getTags() async {
-    tags.value = await _repository.getTags();
+    final _result = await _repository.getTags();
+    _result.fold((final l) {}, (final r) {
+      tags.value = r;
+    });
     return 1;
   }
 
@@ -94,11 +104,11 @@ class ControllerEditProduct extends GetxController {
   }
 
   Future<void> _addtag(final String tag) async {
-    final int? _result = await _repository.addTag(tag);
-    if (_result == 0) {
+    final _result = await _repository.addTag(tag);
+    _result.fold((final l) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content: Text(LocaleKeys.eshop_business_exception_add_tag_error.tr)));
-    }
+    }, (final r) {});
   }
 
   Future<void> addTagClick() async {

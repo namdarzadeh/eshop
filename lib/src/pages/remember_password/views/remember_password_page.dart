@@ -1,10 +1,11 @@
-import 'package:eshop/src/pages/shared/views/custom_padding_widget.dart';
+import 'package:eshop/src/pages/shared/views/custom_number_lable_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../eshop.dart';
 import '../../../infrastructures/utils/eshop_utils.dart';
 import '../../shared/views/custom_lable_widget.dart';
+import '../../shared/views/custom_padding_widget.dart';
 import '../controllers/controller_remember_password.dart';
 
 class RememberPasswordPage extends GetView<ControllerRememberPassword> {
@@ -13,6 +14,7 @@ class RememberPasswordPage extends GetView<ControllerRememberPassword> {
   @override
   Widget build(final BuildContext context) => Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text(LocaleKeys.eshop_login_page_remember_password.tr),
           actions: [
             IconButton(
@@ -33,7 +35,7 @@ class RememberPasswordPage extends GetView<ControllerRememberPassword> {
                       ),
                       Visibility(
                         visible: !controller.passwordFieldVsible.value,
-                        child: CustomLableWidget(
+                        child: CustomNumberLableWidget(
                             controller: controller.controllerMobile,
                             title: LocaleKeys.eshop_shared_mobile.tr),
                       ),

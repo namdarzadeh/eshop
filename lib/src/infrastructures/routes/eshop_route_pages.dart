@@ -1,19 +1,15 @@
-import 'package:eshop/src/pages/cart/commons/binding_cart.dart';
-import 'package:eshop/src/pages/cart/views/cart_page.dart';
-import 'package:eshop/src/pages/edit_product/commons/binding_edit_product.dart';
-import 'package:eshop/src/pages/edit_product/views/edit_product_page.dart';
-import 'package:eshop/src/pages/edit_profile/commons/binding_edit_profile.dart';
-import 'package:eshop/src/pages/edit_profile/views/edit_profile_page.dart';
-import 'package:eshop/src/pages/remember_password/commons/binding_remember_password.dart';
-import 'package:eshop/src/pages/remember_password/views/remember_password_page.dart';
-import 'package:eshop/src/pages/search/commons/binding_search.dart';
-import 'package:eshop/src/pages/search/views/search_page.dart';
-import 'package:eshop/src/pages/show_product/commons/binding_show_product.dart';
-import 'package:eshop/src/pages/show_product/views/show_product_page.dart';
 import 'package:get/get.dart';
 
 import '../../pages/add_product/commons/binding_add_product.dart';
 import '../../pages/add_product/views/add_product_page.dart';
+import '../../pages/cart/commons/binding_cart.dart';
+import '../../pages/cart/views/cart_page.dart';
+import '../../pages/edit_product/commons/binding_edit_product.dart';
+import '../../pages/edit_product/views/edit_product_page.dart';
+import '../../pages/edit_profile/commons/binding_edit_profile.dart';
+import '../../pages/edit_profile/views/edit_profile_page.dart';
+import '../../pages/favorit_list/commons/binding_favorit_list.dart';
+import '../../pages/favorit_list/views/favorit_list_page.dart';
 import '../../pages/login/commons/binding_login.dart';
 import '../../pages/login/views/login_page.dart';
 import '../../pages/product_list_admin/commons/binding_product_list_admin.dart';
@@ -22,7 +18,15 @@ import '../../pages/product_list_user/commons/binding_product_list_user.dart';
 import '../../pages/product_list_user/views/product_list_user_page.dart';
 import '../../pages/register/commons/binding_register.dart';
 import '../../pages/register/views/register_page.dart';
+import '../../pages/remember_password/commons/binding_remember_password.dart';
+import '../../pages/remember_password/views/remember_password_page.dart';
+import '../../pages/search/commons/binding_search.dart';
+import '../../pages/search/views/search_page.dart';
+import '../../pages/show_product/commons/binding_show_product.dart';
+import '../../pages/show_product/views/show_product_page.dart';
 import '../../pages/splash_screen/views/splash_screen_page.dart';
+import '../../pages/users_list/commons/binding_users_list.dart';
+import '../../pages/users_list/views/users_list_page.dart';
 import 'eshop_route_names.dart';
 
 class EShopRoutePages {
@@ -86,6 +90,16 @@ class EShopRoutePages {
       name: EShopRouteNames.search,
       page: () => const SearchPage(),
       binding: BindingSearch(),
+    ),
+    GetPage(
+      name: EShopRouteNames.usersList,
+      page: () => const UsersListPage(),
+      binding: BindingUsersList(),
+    ),
+    GetPage(
+      name: EShopRouteNames.favoritList,
+      page: () => const FavoritListPage(),
+      binding: BindingFavoritList(),
     ),
   ];
 }

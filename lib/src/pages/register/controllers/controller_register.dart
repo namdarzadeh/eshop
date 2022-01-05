@@ -19,6 +19,7 @@ class ControllerRegister extends GetxController {
   final TextEditingController controllerPasswordVerify =
       TextEditingController();
   final TextEditingController controllerAddress = TextEditingController();
+  final TextEditingController controllerMobile = TextEditingController();
   final RepositoriesRegister _repository = RepositoriesRegister();
   List<PersonViewModel> person = <PersonViewModel>[];
   late PersonViewModel personViewModel;
@@ -28,7 +29,10 @@ class ControllerRegister extends GetxController {
   final ImagePicker _picker = ImagePicker();
 
   Future<void> _getPerson() async {
-    person = await _repository.getPerson();
+    final _result = await _repository.getPersons();
+    _result.fold((final l) {}, (final r) {
+      person = r;
+    });
   }
 
   int checkUser() {
@@ -50,19 +54,19 @@ class ControllerRegister extends GetxController {
         family: controllerFamily.text,
         address: controllerAddress.text,
         favorite: '',
-        mobile: '',
+        mobile: controllerMobile.text,
         pic: img64);
-    final int? _result = await _repository.addPerson(personDto);
-    if (_result == 0) {
+    final _result = await _repository.addPerson(personDto);
+    await _result.fold((final l) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content:
               Text(LocaleKeys.eshop_business_exception_register_error.tr)));
-    } else {
+    }, (final r) async {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content: Text(
               LocaleKeys.eshop_business_exception_register_successful.tr)));
       await Get.offNamed(EShopRouteNames.login);
-    }
+    });
   }
 
   Future<void> registerClick() async {

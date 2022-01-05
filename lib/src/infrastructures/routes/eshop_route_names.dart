@@ -11,4 +11,6 @@ class EShopRouteNames {
   static const String rememberPassword = '/eshop_remember_password';
   static const String editProfile = '/eshop_edit_profile';
   static const String search = '/eshop_search';
+  static const String usersList = '/eshop_user_list';
+  static const String favoritList = '/eshop_favorit_list';
 }

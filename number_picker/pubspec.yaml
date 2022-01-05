@@ -1,7 +1,6 @@
 name: number_picker
 description: A new Flutter project.
 version: 0.0.1
-homepage:
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
@@ -10,8 +9,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  get: ^4.6.1
 
 dev_dependencies:
   flutter_test:

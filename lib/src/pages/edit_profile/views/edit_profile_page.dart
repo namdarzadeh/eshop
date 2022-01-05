@@ -1,3 +1,4 @@
+import 'package:eshop/src/pages/shared/views/custom_number_lable_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -63,7 +64,7 @@ class EditProfilePage extends GetView<ControllerEditProfile> {
               CustomLableWidget(
                   controller: controller.controllerAddress,
                   title: LocaleKeys.eshop_shared_address.tr),
-              CustomLableWidget(
+              CustomNumberLableWidget(
                   controller: controller.controllerMobile,
                   title: LocaleKeys.eshop_shared_mobile.tr),
               CustomPaddingWidget(

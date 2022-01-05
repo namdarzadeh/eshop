@@ -1,3 +1,4 @@
+import 'package:eshop/src/pages/shared/views/custom_number_lable_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,7 @@ class RegisterPage extends GetView<ControllerRegister> {
   @override
   Widget build(final BuildContext context) => Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text(LocaleKeys.eshop_shared_register.tr),
           actions: [
             IconButton(
@@ -43,9 +45,8 @@ class RegisterPage extends GetView<ControllerRegister> {
                       autocorrect: false,
                       controller: controller.controllerPassword,
                       decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: LocaleKeys.eshop_shared_password.tr,
-                      ))),
+                          border: const OutlineInputBorder(),
+                          labelText: LocaleKeys.eshop_shared_password.tr))),
               Padding(
                   padding: EdgeInsets.all(EShopUtils.lableWidgetPadding()),
                   child: TextField(
@@ -61,6 +62,9 @@ class RegisterPage extends GetView<ControllerRegister> {
               CustomLableWidget(
                   controller: controller.controllerAddress,
                   title: LocaleKeys.eshop_shared_address.tr),
+              CustomNumberLableWidget(
+                  controller: controller.controllerMobile,
+                  title: LocaleKeys.eshop_shared_mobile.tr),
               CustomPaddingWidget(
                   widget: ElevatedButton(
                       onPressed: () {
@@ -92,7 +96,7 @@ class RegisterPage extends GetView<ControllerRegister> {
                                   fit: BoxFit.cover)),
                     )),
                 Padding(
-                  padding: EdgeInsets.only(bottom: EShopUtils.largePadding()),
+                  padding: EdgeInsets.only(top: EShopUtils.largePadding()),
                   child: Text(LocaleKeys.eshop_shared_select_picture.tr),
                 )
               ],

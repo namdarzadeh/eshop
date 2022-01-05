@@ -5,6 +5,7 @@ import '../../../../eshop.dart';
 import '../../../infrastructures/utils/eshop_utils.dart';
 import '../../shared/views/custom_drawer_widget.dart';
 import '../../shared/views/custom_lable_widget.dart';
+import '../../shared/views/custom_number_lable_widget.dart';
 import '../../shared/views/custom_padding_widget.dart';
 import '../../shared/views/custom_switch_widget.dart';
 import '../controllers/controller_edit_product.dart';
@@ -26,10 +27,10 @@ class EditProductPage extends GetView<ControllerEditProduct> {
               CustomLableWidget(
                   controller: controller.controllerName,
                   title: LocaleKeys.eshop_shared_name.tr),
-              CustomLableWidget(
+              CustomNumberLableWidget(
                   controller: controller.controllerPrice,
                   title: LocaleKeys.eshop_shared_product_price.tr),
-              CustomLableWidget(
+              CustomNumberLableWidget(
                   controller: controller.controllerInstock,
                   title: LocaleKeys.eshop_shared_instock.tr),
               CustomLableWidget(

@@ -36,112 +36,158 @@ class ShowProductPage extends GetView<ControllerShowProduct> {
                     shadowColor: Colors.blue[700],
                     child: Padding(
                       padding: EdgeInsets.all(EShopUtils.largePadding()),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  ClipOval(
-                                    child: Container(
-                                        height: 100,
-                                        width: 100,
-                                        child: controller.localPic.value
-                                            ? Image.asset(
-                                                'lib/assets/icons/product.png',
-                                                package: 'eshop',
-                                                fit: BoxFit.cover)
-                                            : Image.memory(
-                                                controller.imageBytes,
-                                                fit: BoxFit.cover)),
-                                  ),
-                                  Column(children: [
-                                    Padding(
-                                      padding: EdgeInsets.all(
-                                          EShopUtils.smallPadding()),
-                                      child: Text(
-                                          '  ${controller.product.value.name}',
-                                          style: TextStyle(
-                                              fontSize:
-                                                  EShopUtils.largeTextSize())),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.all(
-                                          EShopUtils.smallPadding()),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                              '  ${controller.product.value.price} '
-                                                  .toString()),
-                                          Text(LocaleKeys.eshop_shared_toman.tr)
-                                        ],
+                                  Row(
+                                    children: [
+                                      ClipOval(
+                                        child: Container(
+                                            height: 100,
+                                            width: 100,
+                                            child: controller.localPic.value
+                                                ? Image.asset(
+                                                    'lib/assets/icons/product.png',
+                                                    package: 'eshop',
+                                                    fit: BoxFit.cover)
+                                                : Image.memory(
+                                                    controller.imageBytes,
+                                                    fit: BoxFit.cover)),
                                       ),
-                                    )
-                                  ])
-                                ],
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsets.all(EShopUtils.smallPadding()),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                        '${LocaleKeys.eshop_shared_details.tr} : '),
-                                    Text(controller.product.value.details)
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    EdgeInsets.all(EShopUtils.smallPadding()),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                        '${LocaleKeys.eshop_shared_tag.tr} : '),
-                                    Text(controller.product.value.tag)
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Card(
-                                child: Padding(
-                                  padding:
-                                      EdgeInsets.all(EShopUtils.largePadding()),
-                                  child: InkWell(
-                                    onTap: () {},
-                                    child: Column(
+                                      Column(children: [
+                                        Padding(
+                                          padding: EdgeInsets.all(
+                                              EShopUtils.smallPadding()),
+                                          child: Container(
+                                              width: 150,
+                                              child: Text(
+                                                  '  ${controller.product.value.name}  ',
+                                                  maxLines: null,
+                                                  style: TextStyle(
+                                                      fontSize: EShopUtils
+                                                          .largeTextSize()))),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.all(
+                                              EShopUtils.smallPadding()),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                  '  ${controller.product.value.price} '),
+                                              Text(LocaleKeys
+                                                  .eshop_shared_toman.tr)
+                                            ],
+                                          ),
+                                        )
+                                      ])
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(
+                                        EShopUtils.smallPadding()),
+                                    child: Row(
                                       children: [
-                                        Container(
-                                            padding: EdgeInsets.only(
-                                                bottom:
-                                                    EShopUtils.largePadding()),
-                                            height: 50,
-                                            width: 50,
-                                            child: const Icon(Icons.favorite)),
-                                        Text(LocaleKeys.eshop_shared_favorit.tr,
-                                            style: TextStyle(
-                                                fontSize:
-                                                    EShopUtils.smallTextSize()))
+                                        Text(
+                                            '${LocaleKeys.eshop_shared_tag.tr} : '),
+                                        Text(controller
+                                                    .product.value.tag.length >
+                                                15
+                                            ? '${controller.product.value.tag.substring(0, 15)} ...'
+                                            : controller.product.value.tag)
                                       ],
                                     ),
                                   ),
-                                ),
+                                ],
                               ),
-                              NumberPickerWidget(
-                                  sendNumber: (final i) {
-                                    controller.number.value = i;
-                                    controller.updateCart(
-                                        controller.product.value,
-                                        controller.number.value);
-                                  },
-                                  number: controller.number,
-                                  size: EShopUtils.largePadding())
+                              Column(
+                                children: [
+                                  Card(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(
+                                          EShopUtils.largePadding()),
+                                      child: InkWell(
+                                        onTap: () {
+                                          controller.favoritClick(
+                                              controller.product.value.id);
+                                        },
+                                        child: Column(
+                                          children: [
+                                            Obx(() => Container(
+                                                padding: EdgeInsets.only(
+                                                    bottom: EShopUtils
+                                                        .largePadding()),
+                                                height: 50,
+                                                width: 50,
+                                                child: controller
+                                                        .checkUserFavorit(
+                                                            controller
+                                                                .product.value)
+                                                    ? const Icon(Icons.favorite)
+                                                    : const Icon(Icons
+                                                        .favorite_outline))),
+                                            Text(
+                                                LocaleKeys
+                                                    .eshop_shared_favorit.tr,
+                                                style: TextStyle(
+                                                    fontSize: EShopUtils
+                                                        .smallTextSize()))
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  NumberPickerWidget(
+                                    sendNumber: (final i) {
+                                      if (controller.checkInstock(
+                                              controller.product.value, i) ==
+                                          1) {
+                                        controller.number.value = i;
+                                        controller.updateCart(
+                                            controller.product.value,
+                                            controller.number.value);
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                                content: Text(LocaleKeys
+                                                    .eshop_business_exception_maximum_unit_added
+                                                    .tr)));
+                                      }
+                                    },
+                                    number: controller.number.value,
+                                    size: EShopUtils.largePadding(),
+                                  )
+                                ],
+                              ),
                             ],
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(EShopUtils.smallPadding()),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    '${LocaleKeys.eshop_shared_details.tr} : '),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(EShopUtils.smallPadding()),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    controller.product.value.details,
+                                    maxLines: null,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ],
                       ),

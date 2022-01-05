@@ -18,8 +18,15 @@ class ControllerProductListAdmin extends GetxController {
   RxBool searchMode = false.obs;
 
   Future<int> _getProducts() async {
-    products.value = await _repository.getProducts();
-    return 1;
+    int _localResult = 0;
+    final _result = await _repository.getProducts();
+    _result.fold((final l) {
+      _localResult = 0;
+    }, (final r) {
+      products.value = r;
+      _localResult = 1;
+    });
+    return _localResult;
   }
 
   Future<void> editProduct(final bool i, final ProductViewModel product) async {
@@ -33,7 +40,6 @@ class ControllerProductListAdmin extends GetxController {
           details: product.details,
           tag: product.tag);
       await _repository.putProduct(product.id, _product);
-      await _getProducts();
     } else {
       final ProductDto _product = ProductDto(
           isactive: 0,
@@ -44,8 +50,8 @@ class ControllerProductListAdmin extends GetxController {
           details: product.details,
           tag: product.tag);
       await _repository.putProduct(product.id, _product);
-      await _getProducts();
     }
+    await _getProducts();
   }
 
   Future<void> editProductClick(final int id) async {
@@ -57,14 +63,14 @@ class ControllerProductListAdmin extends GetxController {
   }
 
   Future<void> deleteProductClick(final int id) async {
-    final int _result = await _repository.deleteProduct(id);
-    if (_result == 1) {
-      await Get.dialog(DeleteProductDialog());
-    } else {
+    final _result = await _repository.deleteProduct(id);
+    _result.fold((final l) {
       ScaffoldMessenger.of(Get.context!).showSnackBar(SnackBar(
           content:
-              Text(LocaleKeys.eshop_business_exception_http_error_500.tr)));
-    }
+              Text(LocaleKeys.eshop_business_exception_http_error_400.tr)));
+    }, (final r) async {
+      await Get.dialog(DeleteProductDialog());
+    });
     await _getProducts();
   }
 

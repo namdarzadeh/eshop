@@ -1,5 +1,3 @@
-import 'package:eshop/src/pages/shared/views/custom_filter_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:number_picker/views/number_picker_widget.dart';
@@ -8,6 +6,8 @@ import '../../../../eshop.dart';
 import '../../../infrastructures/utils/eshop_utils.dart';
 import '../../shared/models/product_view_model.dart';
 import '../../shared/views/custom_drawer_widget.dart';
+import '../../shared/views/custom_filter_widget.dart';
+import '../../shared/views/custom_padding_widget.dart';
 import '../controllers/controller_product_list_user.dart';
 
 class ProductListUserPage extends GetView<ControllerProductListUser> {
@@ -75,7 +75,11 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
       if (EShopParameters.filterMode.value) {
         if (i.price >= EShopParameters.filterResult[0] &&
             i.price <= EShopParameters.filterResult[1]) {
-          if (EShopParameters.filterResult[2] == true) {
+          if (EShopParameters.filterResult[3] == true) {
+            if (i.instock > 5) {
+              products.add(buildCard(i, context));
+            }
+          } else if (EShopParameters.filterResult[2] == true) {
             if (i.instock > 0) {
               products.add(buildCard(i, context));
             }
@@ -93,6 +97,7 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
   Padding buildCard(
       final ProductViewModel product, final BuildContext context) {
     final RxInt _number = controller.getnumber(product).obs;
+    final bool _inStock = product.instock == 0 ? false : true;
     return Padding(
       padding: EdgeInsets.only(bottom: EShopUtils.largePadding()),
       child: Card(
@@ -123,7 +128,10 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                         Column(children: [
                           Padding(
                             padding: EdgeInsets.all(EShopUtils.smallPadding()),
-                            child: Text('  ${product.name}',
+                            child: Text(
+                                product.name.length > 12
+                                    ? '  ${product.name.substring(0, 12)} ...'
+                                    : '  ${product.name}',
                                 style: TextStyle(
                                     fontSize: EShopUtils.largeTextSize())),
                           ),
@@ -144,7 +152,9 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                       child: Row(
                         children: [
                           Text('${LocaleKeys.eshop_shared_details.tr} : '),
-                          Text(product.details)
+                          Text(product.details.length > 15
+                              ? '${product.details.substring(0, 15)} ...'
+                              : product.details)
                         ],
                       ),
                     ),
@@ -153,7 +163,9 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                       child: Row(
                         children: [
                           Text('${LocaleKeys.eshop_shared_tag.tr} : '),
-                          Text(product.tag)
+                          Text(product.tag.length > 15
+                              ? '${product.tag.substring(0, 15)} ...'
+                              : product.tag)
                         ],
                       ),
                     ),
@@ -166,7 +178,9 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                       child: Padding(
                         padding: EdgeInsets.all(EShopUtils.largePadding()),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            controller.favoritClick(product.id);
+                          },
                           child: Column(
                             children: [
                               Container(
@@ -174,7 +188,9 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                                     bottom: EShopUtils.largePadding()),
                                 height: 50,
                                 width: 50,
-                                child: const Icon(Icons.favorite),
+                                child: controller.checkUserFavorit(product)
+                                    ? const Icon(Icons.favorite)
+                                    : const Icon(Icons.favorite_outline),
                               ),
                               Text(LocaleKeys.eshop_shared_favorit.tr,
                                   style: TextStyle(
@@ -184,13 +200,35 @@ class ProductListUserPage extends GetView<ControllerProductListUser> {
                         ),
                       ),
                     ),
-                    NumberPickerWidget(
+                    Visibility(
+                      visible: _inStock,
+                      child: NumberPickerWidget(
                         sendNumber: (final i) {
-                          _number.value = i;
-                          controller.updateCart(product, _number.value);
+                          if (controller.checkInstock(product, i) == 1) {
+                            _number.value = i;
+                            controller.updateCart(product, _number.value);
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(LocaleKeys
+                                    .eshop_business_exception_maximum_unit_added
+                                    .tr)));
+                          }
                         },
-                        number: _number,
-                        size: EShopUtils.largePadding())
+                        number: _number.value,
+                        size: EShopUtils.largePadding(),
+                      ),
+                    ),
+                    Visibility(
+                      visible: !_inStock,
+                      child: CustomPaddingWidget(
+                        widget: Row(
+                          children: [
+                            Text(LocaleKeys.eshop_shared_outofstock.tr,
+                                style: const TextStyle(color: Colors.red)),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],

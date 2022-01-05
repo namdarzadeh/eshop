@@ -11,14 +11,18 @@ class ControllerLogin extends GetxController {
   final RepositoriesLogin _repository = RepositoriesLogin();
   List<PersonViewModel> person = <PersonViewModel>[];
   late PersonViewModel personViewModel;
+  RxBool showPassword = true.obs;
 
   Future<int> _getPerson() async {
-    person = await _repository.getPerson();
-    if (person.isEmpty) {
-      return 0;
-    } else {
-      return 1;
-    }
+    int _localResult = 0;
+    final _result = await _repository.getPersons();
+    _result.fold((final l) {
+      _localResult = 0;
+    }, (final r) {
+      person = r;
+      _localResult = 1;
+    });
+    return _localResult;
   }
 
   int checkUser() {
@@ -31,6 +35,10 @@ class ControllerLogin extends GetxController {
       }
     });
     return _result;
+  }
+
+  Future<void> _addSetting() async {
+    await _repository.addSetting(personViewModel);
   }
 
   Future<void> loginClick() async {
@@ -53,6 +61,7 @@ class ControllerLogin extends GetxController {
                   .eshop_business_exception_infomation_incorrect.tr)));
         } else {
           EShopParameters.localPersonViewModel = personViewModel;
+          await _addSetting();
           if (personViewModel.isadmin == 1) {
             await Get.offNamed(EShopRouteNames.productListAdmin);
           } else {
