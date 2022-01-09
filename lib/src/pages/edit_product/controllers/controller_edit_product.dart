@@ -20,6 +20,7 @@ class ControllerEditProduct extends GetxController {
   final TextEditingController controllerTag = TextEditingController();
   final RepositoriesEditProduct _repository = RepositoriesEditProduct();
   RxList<TagViewModel> tags = <TagViewModel>[].obs;
+  List<String> localTagsList = <String>[];
   RxBool localPic = true.obs;
   late Uint8List imageBytes;
   ProductViewModel product = ProductViewModel(
@@ -93,6 +94,12 @@ class ControllerEditProduct extends GetxController {
     return 1;
   }
 
+  void _creatLocalTagsList() {
+    tags.forEach((final element) {
+      localTagsList.add(element.name);
+    });
+  }
+
   int checkTag() {
     int _result = 0;
     tags.forEach((final element) {
@@ -162,6 +169,8 @@ class ControllerEditProduct extends GetxController {
   void onInit() async {
     await _getProduct(Get.arguments as int);
     setProduct();
+    await _getTags();
+    _creatLocalTagsList();
     super.onInit();
   }
 }

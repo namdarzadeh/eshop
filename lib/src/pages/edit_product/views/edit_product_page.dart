@@ -1,3 +1,4 @@
+import 'package:eshop/src/pages/shared/views/custom_autocomplete_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -61,17 +62,9 @@ class EditProductPage extends GetView<ControllerEditProduct> {
               ),
               Row(
                 children: [
-                  Container(
-                    padding: EdgeInsets.all(EShopUtils.lableWidgetPadding()),
-                    width: 300,
-                    child: TextField(
+                  CustomAutocompleteWidget(
                       controller: controller.controllerTag,
-                      decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        labelText: LocaleKeys.eshop_shared_tag.tr,
-                      ),
-                    ),
-                  ),
+                      tags: controller.localTagsList),
                   ElevatedButton(
                     onPressed: () {
                       controller.addTagClick();
